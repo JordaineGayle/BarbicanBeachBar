@@ -25,16 +25,16 @@ public class ScenesHandler {
     public static void LoginStage(Stage s) throws IOException{
         try{
             
-        Parent root = FXMLLoader.load(Main.class.getResource("loginscreen.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        s.setScene(scene);
-        s.setResizable(false);
-        s.sizeToScene();
-        s.show();
-        
-        login_stage = s;
+            Parent root = FXMLLoader.load(Main.class.getResource("loginscreen.fxml"));
+
+            Scene scene = new Scene(root);
+
+            s.setScene(scene);
+            s.setResizable(false);
+            s.sizeToScene();
+            s.show();
+
+            login_stage = s;
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -49,9 +49,9 @@ public class ScenesHandler {
             
             s.show();
             
-            login_stage = s;
+            dashboard_stage = s;
             
-            dashboard_stage.close();
+            login_stage.close();
         } catch(Exception e) {
             e.printStackTrace();
         }
