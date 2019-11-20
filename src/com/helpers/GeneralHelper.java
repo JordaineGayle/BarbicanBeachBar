@@ -13,11 +13,11 @@ import java.util.Base64;
  */
 public class GeneralHelper {
     
-    public String EncodeString(String str){
+    public static String EncodeString(String str){
         return Base64.getEncoder().encodeToString(str.getBytes());
     }
     
-    public String DecodeString(String str){
+    public static String DecodeString(String str){
         byte[] decodedBytes = Base64.getDecoder().decode(str);
         return new String(decodedBytes);
     };

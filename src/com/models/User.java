@@ -48,7 +48,9 @@ public class User {
         
     }
     
-    public User(String fName, String lName, String eMail, String pWord,String pNumber, UserType uType){
+    public User(long Id, String fName, String lName, String eMail, String pWord,String pNumber, UserType uType){
+        
+        this.Id = Id;
         
         this.FirstName = fName;
         

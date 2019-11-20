@@ -5,8 +5,11 @@
  */
 package barbicanbeachbaroopproject2019;
 
+import com.enums.Enums;
+import com.enums.Enums.UserType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.helpers.GeneralHelper;
 import com.models.User;
 import com.scenes.ScenesHandler;
 import java.net.URL;
@@ -143,7 +146,7 @@ public class RegisterController implements Initializable {
     private boolean validatePassword(){
         
         pword.lengthProperty().addListener((e,oldv,newv)->{
-            System.out.println(newv);
+            //System.out.println(newv);
             if(oldv.intValue() < 6 || newv.intValue() < 6){
                 setError("Password length must be grater than 6 characters.");
                 errorState = "Password length must be grater than 6 characters.";
@@ -160,7 +163,7 @@ public class RegisterController implements Initializable {
     private boolean validatePhone(){
         
         phone.lengthProperty().addListener((e,oldv,newv)->{
-            System.out.println(newv);
+            //System.out.println(newv);
             if((oldv.intValue() < 10 || oldv.intValue() > 15) || (newv.intValue() < 10 || newv.intValue() > 15)){
                 setError("Phone number must be 10 - 15 characters in length.");
                 errorState = "Phone number must be 10 - 15 characters in length.";
@@ -175,7 +178,7 @@ public class RegisterController implements Initializable {
     }
     
     private boolean processUserCreation(){
-        user = new User();
+        user = new User(0,fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Customer);
         try{
             System.out.println("New User Added: "+adduser(user));
             return true;
