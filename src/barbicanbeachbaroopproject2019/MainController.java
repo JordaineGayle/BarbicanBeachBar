@@ -22,19 +22,24 @@ import javafx.stage.Stage;
  *
  * @author jorda
  */
-public class LoginController implements Initializable {
+public class MainController implements Initializable {
+    
+    
     
     @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
+    public void loginScreen(ActionEvent event) {
         ScenesHandler.DashboardStage(new Stage());
     }
     
+    @FXML
+    public void registerScreen(ActionEvent event){
+        ScenesHandler.RegisterStage(new Stage());
+    }
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

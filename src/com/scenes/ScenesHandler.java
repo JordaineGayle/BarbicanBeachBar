@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -22,6 +23,8 @@ public class ScenesHandler {
     
     private static Stage dashboard_stage;
     
+    private static Stage register_stage;
+    
     public static void LoginStage(Stage s) throws IOException{
         try{
             
@@ -30,12 +33,17 @@ public class ScenesHandler {
             Scene scene = new Scene(root);
 
             s.setScene(scene);
+
             s.setResizable(false);
+
             s.sizeToScene();
-            s.show();
 
             login_stage = s;
-        }catch(Exception e){
+            
+            s.show();
+
+        }catch(IOException e){
+            
             e.printStackTrace();
         }
     }
@@ -45,6 +53,7 @@ public class ScenesHandler {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/com/dashboard/Dashboard.fxml"));
             Parent root = (Parent) fxmlLoader.load();
+            
             s.setScene(new Scene(root));  
             
             s.show();
@@ -52,7 +61,34 @@ public class ScenesHandler {
             dashboard_stage = s;
             
             login_stage.close();
-        } catch(Exception e) {
+            
+        } catch(IOException e) {
+            
+            e.printStackTrace();
+        }
+    }
+    
+    public static void RegisterStage(Stage s){
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(Main.class.getResource("registerscreen.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.initModality(Modality.APPLICATION_MODAL);
+            
+            s.setTitle("Register");
+            
+            s.setScene(new Scene(root));
+            
+            s.setResizable(false);
+
+            s.sizeToScene();
+            
+            s.show();
+            
+            register_stage = s;
+            
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }
@@ -64,6 +100,10 @@ public class ScenesHandler {
     
     public Stage getDashboardStage(){
         return dashboard_stage;
+    }
+    
+    public Stage getRegisterStage(){
+        return register_stage;
     }
     
     
