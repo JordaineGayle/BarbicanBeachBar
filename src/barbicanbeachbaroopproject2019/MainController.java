@@ -27,12 +27,12 @@ public class MainController implements Initializable {
     
     
     @FXML
-    public void loginScreen(ActionEvent event) {
+    protected void loginScreen(ActionEvent event) {
         ScenesHandler.DashboardStage(new Stage());
     }
     
     @FXML
-    public void registerScreen(ActionEvent event){
+    protected void registerScreen(ActionEvent event){
         ScenesHandler.RegisterStage(new Stage());
     }
     

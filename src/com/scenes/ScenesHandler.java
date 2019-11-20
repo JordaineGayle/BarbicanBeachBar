@@ -6,6 +6,8 @@
 package com.scenes;
 
 import barbicanbeachbaroopproject2019.Main;
+import barbicanbeachbaroopproject2019.MainController;
+import barbicanbeachbaroopproject2019.RegisterController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,6 +54,7 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/com/dashboard/Dashboard.fxml"));
+           // fxmlLoader.setController(MainController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             s.setScene(new Scene(root));  
@@ -72,6 +75,7 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("registerscreen.fxml"));
+            //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             s.initModality(Modality.APPLICATION_MODAL);
@@ -94,15 +98,15 @@ public class ScenesHandler {
     }
     
     
-    public Stage getLoginStage(){
+    public static Stage getLoginStage(){
         return login_stage;
     }
     
-    public Stage getDashboardStage(){
+    public static Stage getDashboardStage(){
         return dashboard_stage;
     }
     
-    public Stage getRegisterStage(){
+    public static Stage getRegisterStage(){
         return register_stage;
     }
     

@@ -20,7 +20,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <TextField id="fname" layoutX="65.0" layoutY="96.0" prefHeight="49.0" prefWidth="322.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
+      <TextField id="fname" fx:id="fname" layoutX="65.0" layoutY="96.0" prefHeight="49.0" prefWidth="322.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
@@ -31,7 +31,40 @@
             <Insets left="20.0" />
          </padding>
       </TextField>
-      <PasswordField id="pword" layoutX="65.0" layoutY="378.0" prefHeight="49.0" prefWidth="322.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #1B5E20; -fx-border-radius: 30px; -fx-text-fill: white;">
+      <TextField id="lname" fx:id="lname" layoutX="66.0" layoutY="169.0" prefHeight="49.0" prefWidth="322.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
+         <font>
+            <Font name="Candara" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </TextField>
+      <TextField id="email" fx:id="email" layoutX="66.0" layoutY="239.0" prefHeight="49.0" prefWidth="322.0" promptText="Email Address" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
+         <font>
+            <Font name="Candara" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </TextField>
+      <TextField id="phone" fx:id="phone" layoutX="66.0" layoutY="309.0" prefHeight="49.0" prefWidth="322.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
+         <font>
+            <Font name="Candara" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </TextField>
+      <PasswordField id="pword" fx:id="pword" layoutX="65.0" layoutY="378.0" prefHeight="49.0" prefWidth="322.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #1B5E20; -fx-border-radius: 30px; -fx-text-fill: white;">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -39,39 +72,6 @@
             <Font name="Candara" size="14.0" />
          </font>
       </PasswordField>
-      <TextField id="lname" layoutX="66.0" layoutY="169.0" prefHeight="49.0" prefWidth="322.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
-         <font>
-            <Font name="Candara" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </TextField>
-      <TextField id="email" layoutX="66.0" layoutY="239.0" prefHeight="49.0" prefWidth="322.0" promptText="Email Address" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
-         <font>
-            <Font name="Candara" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </TextField>
-      <TextField id="phone" layoutX="66.0" layoutY="309.0" prefHeight="49.0" prefWidth="322.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-radius: 30px; -fx-border-color: #1B5E20; -fx-text-fill: white;">
-         <font>
-            <Font name="Candara" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </TextField>
       <Label id="result" fx:id="result" alignment="CENTER" layoutX="70.0" layoutY="534.0" prefHeight="17.0" prefWidth="313.0" text="* no errors *" textFill="#d31313">
          <font>
             <Font name="Candara Bold Italic" size="12.0" />
