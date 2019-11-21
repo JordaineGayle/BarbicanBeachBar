@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Jordaine",
+    "LastName": "Gayle",
+    "EmailAddress": "jgayle@avantmark.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "18765578447",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:29:43 AM"
+  },
+  {
+    "Id": 2,
+    "FirstName": "Jordaine",
+    "LastName": "Gayle",
+    "EmailAddress": "mike@jm.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "18765578447",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:30:42 AM"
+  },
+  {
+    "Id": 3,
+    "FirstName": "Micheal",
+    "LastName": "Manley",
+    "EmailAddress": "jb@gmail.com",
+    "Password": "TG92ZTIzNDU2Nzg5",
+    "PhoneNumber": "18765534422",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:35:42 AM"
+  },
+  {
+    "Id": 4,
+    "FirstName": "Shavel",
+    "LastName": "Campbell",
+    "EmailAddress": "sh@gmail.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "18765578447",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:37:11 AM"
+  }
+]

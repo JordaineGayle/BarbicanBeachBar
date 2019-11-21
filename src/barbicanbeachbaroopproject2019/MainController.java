@@ -6,6 +6,7 @@
 package barbicanbeachbaroopproject2019;
 
 import static barbicanbeachbaroopproject2019.Main.main;
+import com.helpers.FileHelper;
 import com.scenes.ScenesHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +29,7 @@ public class MainController implements Initializable {
     
     @FXML
     protected void loginScreen(ActionEvent event) {
+        
         ScenesHandler.DashboardStage(new Stage());
     }
     
@@ -40,6 +42,7 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }    
     
 }

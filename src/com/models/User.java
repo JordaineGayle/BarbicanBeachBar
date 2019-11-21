@@ -48,9 +48,7 @@ public class User {
         
     }
     
-    public User(long Id, String fName, String lName, String eMail, String pWord,String pNumber, UserType uType){
-        
-        this.Id = Id;
+    public User(String fName, String lName, String eMail, String pWord,String pNumber, UserType uType){
         
         this.FirstName = fName;
         
@@ -66,6 +64,9 @@ public class User {
         
     }
     
+    public long getUserId(){
+        return this.Id;
+    }
     
     public String getFirstName(){
         return this.FirstName;
@@ -116,6 +117,10 @@ public class User {
     
     public void setUserType(UserType UserType){
         this.UserType = UserType;
+    }
+    
+    public void setUserId(long id){
+        this.Id = id;
     }
     
 }

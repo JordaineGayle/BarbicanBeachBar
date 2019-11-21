@@ -5,6 +5,9 @@
  */
 package com.helpers;
 
+import com.models.User;
+import java.util.ArrayList;
+
 /**
  *
  * @author jorda

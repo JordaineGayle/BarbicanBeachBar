@@ -9,11 +9,14 @@ import com.enums.Enums;
 import com.enums.Enums.UserType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.helpers.FileHelper;
 import com.helpers.GeneralHelper;
+import com.helpers.UserHelper;
 import com.models.User;
 import com.scenes.ScenesHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.FileHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -72,8 +75,6 @@ public class RegisterController implements Initializable {
             
             if(processUserCreation()){
                 error.set("Registered Successfully");
-            }else{
-                setError("Failed to create user.");
             }
         }else{
             if(!errorState.isEmpty()){
@@ -178,22 +179,15 @@ public class RegisterController implements Initializable {
     }
     
     private boolean processUserCreation(){
-        user = new User(0,fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Customer);
+        user = new User(fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Customer);
         try{
-            System.out.println("New User Added: "+adduser(user));
+            UserHelper uhelper = new UserHelper();
+            uhelper.AddUser(user);
             return true;
         }catch(Exception e){
+            setError(e.getMessage());
             return false;
         }
     }
     
-    private String adduser(User u) throws Exception{
-        try{
-            Gson json = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-            return json.toJson(u);
-        }catch(Exception e){
-            throw new Exception("Failed to create user");
-        }
-        
-    }
 }

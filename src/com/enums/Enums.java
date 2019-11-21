@@ -13,7 +13,8 @@ public class Enums {
     
     public enum UserType{
         Admin, 
-        Customer
+        Customer,
+        Guest
     }
     
 }
