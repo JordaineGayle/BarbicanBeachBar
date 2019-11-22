@@ -38,5 +38,35 @@
     "PhoneNumber": "18765578447",
     "UserType": "Customer",
     "Timestamp": "Nov 21, 2019 12:37:11 AM"
+  },
+  {
+    "Id": 5,
+    "FirstName": "Jamie",
+    "LastName": "Sullivan",
+    "EmailAddress": "js@gmail.com",
+    "Password": "TG92ZTIzNDU2Nzg5",
+    "PhoneNumber": "18763422113",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:40:53 AM"
+  },
+  {
+    "Id": 6,
+    "FirstName": "Jamie",
+    "LastName": "Sullivan",
+    "EmailAddress": "j@gmail.com",
+    "Password": "TG92ZTIzNDU2Nzg5",
+    "PhoneNumber": "18763422113",
+    "UserType": "Customer",
+    "Timestamp": "Nov 21, 2019 12:41:02 AM"
+  },
+  {
+    "Id": 7,
+    "FirstName": "Amanda",
+    "LastName": "Mitchell",
+    "EmailAddress": "amitch@gmail.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "1-876-557-8447",
+    "UserType": "Customer",
+    "Timestamp": "Nov 22, 2019 6:00:28 AM"
   }
 ]

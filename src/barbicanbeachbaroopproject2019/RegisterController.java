@@ -12,6 +12,8 @@ import com.google.gson.GsonBuilder;
 import com.helpers.FileHelper;
 import com.helpers.GeneralHelper;
 import com.helpers.UserHelper;
+import com.interfaces.IDisplayUserError;
+import com.interfaces.IInitWrapper;
 import com.models.User;
 import com.scenes.ScenesHandler;
 import java.net.URL;
@@ -31,7 +33,7 @@ import javafx.scene.control.TextInputControl;
  *
  * @author jorda
  */
-public class RegisterController implements Initializable {
+public class RegisterController implements IInitWrapper, IDisplayUserError {
 
     @FXML
     private TextField fname = new TextField();
@@ -91,39 +93,33 @@ public class RegisterController implements Initializable {
         
         setDefault();
         
-        ActivateListeners();
+        activateListeners();
     }
     
-    private void ActivateListeners(){
+    @Override
+    public void initBindings(){
+        result.textProperty().bindBidirectional(error);
+    }
+    
+    @Override
+    public void setError(String msg){
+        result.setStyle("-fx-text-fill: #b71c1c");
+        error.set("*"+msg+"*");
+    }
+    
+    @Override
+    public void setDefault(){
+        result.setStyle("-fx-text-fill: #1B5E20");
+        error.set("");
+    }
+    
+    @Override
+    public void activateListeners(){
         setEventListener(fname,"Enter a valid first name.");
         setEventListener(lname,"Enter a valid last name.");
         setEventListener(email,"Enter a valid email address.");
         validatePhone();
         validatePassword();
-    }
-    
-    private boolean PassedFieldValidation(){
-        if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() || phone.getText().isEmpty() || pword.getText().isEmpty()){
-            setError("All fields are mandatory for this request.");
-            
-            return false;
-        }else{
-            if(PasswordValid && PhoneValid){
-                return true;
-            }
-            
-            return false;
-        }
-    }
-    
-    private void setError(String msg){
-        result.setStyle("-fx-text-fill: #b71c1c");
-        error.set("*"+msg+"*");
-    }
-    
-    private void setDefault(){
-        result.setStyle("-fx-text-fill: #1B5E20");
-        error.set("");
     }
     
     private void setEventListener(TextInputControl text, String msg){
@@ -140,8 +136,20 @@ public class RegisterController implements Initializable {
         
     }
     
-    private void initBindings(){
-        result.textProperty().bindBidirectional(error);
+    
+    
+    private boolean PassedFieldValidation(){
+        if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() || phone.getText().isEmpty() || pword.getText().isEmpty()){
+            setError("All fields are mandatory for this request.");
+            
+            return false;
+        }else{
+            if(PasswordValid && PhoneValid){
+                return true;
+            }
+            
+            return false;
+        }
     }
     
     private boolean validatePassword(){
@@ -189,5 +197,6 @@ public class RegisterController implements Initializable {
             return false;
         }
     }
+
     
 }

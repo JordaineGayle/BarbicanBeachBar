@@ -5,23 +5,74 @@
  */
 package com.dashboard;
 
+import com.helpers.CacheHelper;
+import com.interfaces.IDisplayUserError;
+import com.interfaces.IInitWrapper;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
  * @author jgayle
  */
-public class DashboardController implements Initializable {
+public class DashboardController implements IInitWrapper, IDisplayUserError {
 
+    @FXML
+    private Label username = new Label();
+    
+    @FXML
+    private Label usertype = new Label();
+    
+    
+    private StringProperty uNameBinder = new SimpleStringProperty();
+    
+    private StringProperty uTypeBinder = new SimpleStringProperty();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        initBindings();
     }    
+
+    @Override
+    public void initBindings() {
+        
+        initBinders();
+        
+        username.textProperty().bindBidirectional(uNameBinder);
+        
+        usertype.textProperty().bindBidirectional(uTypeBinder);
+    }
+
+    @Override
+    public void activateListeners() {
+        
+    }
+
+    @Override
+    public void setError(String msg) {
+       
+    }
+
+    @Override
+    public void setDefault() {
+        
+    }
+    
+    
+    private void initBinders(){
+        
+        uNameBinder.set(CacheHelper.getUsername());
+        
+        uTypeBinder.set(CacheHelper.getUserType().toString());
+    }
     
 }

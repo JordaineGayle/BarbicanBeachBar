@@ -101,17 +101,37 @@ public class UserHelper {
         return null;
     }
     
+    public User getUserByEmailType (String email, UserType utype){
+        
+        for (User user : getUsers()) {
+            if(user.getEmailAddress().toLowerCase().equals(email.toLowerCase()) && user.getUserType().equals(utype)){
+                return user;
+            }
+        }
+        
+        return null;
+    }
+    
    public boolean loginUser(String email, String pword, UserType utype) throws Exception{
        
        if(email.isEmpty() || pword.isEmpty() || utype == null){
-           throw new Exception("please enter valid credentials.");
+           throw new Exception("Please enter valid credentials.");
        }
        
-       User user = getUserByEmail(email);
+       User user = getUserByEmailType(email,utype);
        
-       if(GeneralHelper.DecodeString(user.getPassword()).equals(pword)){
-           return true;
+       if(user!=null){
+        if(GeneralHelper.DecodeString(user.getPassword()).equals(pword)){
+
+             CacheHelper.setUsername(user.getFirstName()+" "+user.getLastName());
+
+             CacheHelper.setUsertype(user.getUserType());
+
+             return true;
+         }
        }
+       
+       
        
        throw new Exception("Login failed. #Invalid login credentials.");
        

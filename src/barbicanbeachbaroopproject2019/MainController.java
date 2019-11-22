@@ -7,6 +7,7 @@ package barbicanbeachbaroopproject2019;
 
 import static barbicanbeachbaroopproject2019.Main.main;
 import com.helpers.FileHelper;
+import com.interfaces.IInitWrapper;
 import com.scenes.ScenesHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,20 +24,11 @@ import javafx.stage.Stage;
  *
  * @author jorda
  */
-public class MainController implements Initializable {
+public class MainController implements IInitWrapper {
     
     
     
-    @FXML
-    protected void loginScreen(ActionEvent event) {
-        
-        ScenesHandler.DashboardStage(new Stage());
-    }
     
-    @FXML
-    protected void registerScreen(ActionEvent event){
-        ScenesHandler.RegisterStage(new Stage());
-    }
     
     
     
@@ -44,5 +36,15 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+
+    @Override
+    public void initBindings() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void activateListeners() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
