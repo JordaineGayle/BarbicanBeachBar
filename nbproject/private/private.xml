@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/dashboard/DashboardController.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/models/User.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/barbicanbeachbaroopproject2019/MainController.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/helpers/DHelper.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/interfaces/IDisplayUserError.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/scenes/ScenesHandler.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/barbicanbeachbaroopproject2019/RegisterController.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/barbicanbeachbaroopproject2019/LoginController.java</file>
             <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/interfaces/IInitWrapper.java</file>
+            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/enums/Enums.java</file>
+            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/models/User.java</file>
+            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/helpers/OrdersHelper.java</file>
             <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/helpers/CacheHelper.java</file>
+            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/models/Order.java</file>
             <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/barbicanbeachbaroopproject2019/Main.java</file>
-            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/barbicanbeachbaroopproject2019/registerscreen.fxml</file>
+            <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/interfaces/IDisplayUserError.java</file>
             <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/helpers/GeneralHelper.java</file>
             <file>file:/C:/Users/jorda/Desktop/BarbicanbeachbarOOPProject2019/src/com/helpers/UserHelper.java</file>
         </group>
