@@ -5,7 +5,7 @@
  */
 package barbicanbeachbaroopproject2019;
 
-import com.scenes.ScenesHandler;
+import scenes.ScenesHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

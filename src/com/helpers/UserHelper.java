@@ -22,10 +22,6 @@ import java.util.Iterator;
  */
 public class UserHelper {
     
-    public UserHelper(){
-    
-    }
-    
     public ArrayList<User> getUsers(){
         
         FileHelper fp = new FileHelper();
