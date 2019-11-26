@@ -15,33 +15,35 @@ import java.util.ArrayList;
  */
 public class UsersHelper implements  IDataManipulation<User>{
 
+    private FileHelper fp = new FileHelper("users.json");
+    
     @Override
-    public User Add(Object obj) {
+    public boolean Add(User obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<User> Add(ArrayList<Object> lObj) {
+    public boolean Add(ArrayList<User> lObj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public User Delete(Object id) {
+    public boolean Delete(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<User> Delete(ArrayList<Object> lObj) {
+    public boolean Delete(ArrayList<Object> lObj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public User Edit(Object id) {
+    public boolean Edit(User id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<User> Edit(ArrayList<Object> lObj) {
+    public boolean Edit(ArrayList<Object> lObj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -77,6 +79,11 @@ public class UsersHelper implements  IDataManipulation<User>{
 
     @Override
     public ArrayList<User> fromJsonArray(String str) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int GetCurrentId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

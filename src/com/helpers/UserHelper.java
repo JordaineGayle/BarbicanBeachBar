@@ -24,13 +24,13 @@ public class UserHelper {
     
     public ArrayList<User> getUsers(){
         
-        FileHelper fp = new FileHelper();
+        FileHelper fp = new FileHelper("user.json");
         
         try{
             
             Gson json = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
             
-            String data = fp.read("user.json");
+            String data = fp.read();
             
             Type u = new TypeToken<ArrayList<User>>(){}.getType();
             
@@ -78,9 +78,9 @@ public class UserHelper {
 
         String jsonString = json.toJson(userlist);
 
-        FileHelper fhelper = new FileHelper();
+        FileHelper fhelper = new FileHelper("user.json");
         try{ 
-            int success = fhelper.write(jsonString, "user.json");
+            int success = fhelper.write(jsonString);
         }catch(Exception e){
             throw new Exception("Failed to create user.");
         }

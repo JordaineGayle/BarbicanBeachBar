@@ -20,10 +20,21 @@ public class FileHelper {
     
     private String absolutePath = Paths.get("").toAbsolutePath().toString()+"/src/database/structure/files/";
     
-    public boolean create(String path) throws IOException{
+    private String fname;
+    
+    public FileHelper(){
+        fname = "";
+    }
+    
+    public FileHelper(String fileName){
+        this.fname = fileName;
+    }
+    
+    
+    public boolean create() throws IOException{
         try{
             
-            File file = new File(path);
+            File file = new File(absolutePath+fname);
             
             return file.createNewFile();
             
@@ -32,19 +43,19 @@ public class FileHelper {
         }
     }
     
-    public int write(String data, String fileName)throws IOException {
+    public int write(String data)throws IOException {
         
         try{
             
             
-            absolutePath+=fileName;
+            absolutePath+=fname;
         
             String path = absolutePath;
             
             File file = new File(path);
             
             if(!file.exists()){
-                create(path);
+                create();
             }
             
             FileOutputStream os = new FileOutputStream(path);
@@ -63,7 +74,7 @@ public class FileHelper {
         }
     }
     
-    public String read(String fileName)throws IOException {
+    public String read()throws IOException {
         
         try{
             
@@ -71,14 +82,14 @@ public class FileHelper {
             
             String data = "";
             
-            absolutePath+=fileName;
+            absolutePath+=fname;
         
             String path = absolutePath;
             
             File file = new File(path);
             
             if(!file.exists()){
-                create(path);
+                create();
             }
             
             FileReader fileReader = new FileReader(path);
@@ -98,5 +109,13 @@ public class FileHelper {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public void setFileName(String fname){
+        this.fname = fname;
+    }
+    
+    public String getFileName(){
+        return fname;
     }
 }

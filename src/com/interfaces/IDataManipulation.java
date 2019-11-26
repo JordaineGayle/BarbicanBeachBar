@@ -16,17 +16,19 @@ import java.util.ArrayList;
  */
 public interface IDataManipulation<T> {
     
-    public T Add(Object obj);
+    public int GetCurrentId();
     
-    public ArrayList<T> Add(ArrayList<Object> lObj);
+    public boolean Add(T obj);
     
-    public T Delete(Object id);
+    public boolean Add(ArrayList<T> lObj);
     
-    public ArrayList<T> Delete(ArrayList<Object> lObj);
+    public boolean Delete(Object id);
     
-    public T Edit(Object id);
+    public boolean Delete(ArrayList<Object> lObj);
     
-    public ArrayList<T> Edit(ArrayList<Object> lObj);
+    public boolean Edit(T obj);
+    
+    public boolean Edit(ArrayList<Object> lObj);
     
     public T GetSingle(Object id);
     
