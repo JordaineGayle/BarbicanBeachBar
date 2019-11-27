@@ -81,6 +81,8 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
     
     private void itemNameExistListener(){
         
+        
+        
         itemname.textProperty().addListener( (e,oldv,newv)->{
             
         });
