@@ -8,12 +8,13 @@ package com.models;
 import java.sql.Timestamp;
 
 import com.helpers.GeneralHelper;
+import java.util.Objects;
 
 /**
  *
  * @author jorda
  */
-public class Item {
+public class Item implements Comparable<Item> {
     
     private int itemId;
     
@@ -99,11 +100,33 @@ public class Item {
         return this.quantity;
     }
     
-    public String getUniqueName(String uname){
+    public String getUniqueName(){
         return this.uniqueName;
     }
 
     public Timestamp getTimestamp(){
         return this.timeStamp;
+    }
+
+    @Override
+    public int compareTo(Item o) {
+
+        return this.getItemId() - o.getItemId();
+            
+    }
+    
+
+    // Two employees are equal if their IDs are equal
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return itemId == item.getItemId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId);
     }
 }

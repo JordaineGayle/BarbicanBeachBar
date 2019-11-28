@@ -13,6 +13,8 @@ import com.models.Item;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -35,6 +37,10 @@ public class ItemsHelper implements IDataManipulation<Item> {
         }
         
         ArrayList<Item> items = GetAll();
+        
+        if(items == null){
+            items = new ArrayList<>();
+        }
         
         int currentId = GetCurrentId();
         
@@ -83,6 +89,10 @@ public class ItemsHelper implements IDataManipulation<Item> {
         int currentId = (int)id;
         
         ArrayList<Item> items = GetAll();
+        
+        if(items == null){
+            items = new ArrayList<>();
+        }
         
         boolean removed = items.removeIf( e-> e.getItemId() == currentId);
         
@@ -148,6 +158,10 @@ public class ItemsHelper implements IDataManipulation<Item> {
         
         ArrayList<Item> items = GetAll();
         
+        if(items == null){
+            items = new ArrayList<>();
+        }
+        
         int currentId = (int)id;
         
         Stream<Item> i = items.stream().filter(e->e.getItemId() == currentId);
@@ -166,9 +180,9 @@ public class ItemsHelper implements IDataManipulation<Item> {
             
         }catch(Exception e){
             e.printStackTrace();
-            
-            return new ArrayList<Item>(){};
         }
+        
+        return new ArrayList<Item>(){};
         
     }
 
@@ -216,7 +230,17 @@ public class ItemsHelper implements IDataManipulation<Item> {
     @Override
     public int GetCurrentId()
     {
-        return GetAll().size();
+        ArrayList<Item> items = GetAll();
+        
+        if(items != null){
+            
+            Collections.sort(items);
+            
+            return items.get(items.size()-1).getItemId();
+        }
+        
+        return 0;
+        
     }
     
     

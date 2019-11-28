@@ -47,10 +47,7 @@ public class FileHelper {
         
         try{
             
-            
-            absolutePath+=fname;
-        
-            String path = absolutePath;
+            String path = absolutePath+fname;
             
             File file = new File(path);
             
@@ -82,9 +79,7 @@ public class FileHelper {
             
             String data = "";
             
-            absolutePath+=fname;
-        
-            String path = absolutePath;
+            String path = absolutePath+fname;;
             
             File file = new File(path);
             

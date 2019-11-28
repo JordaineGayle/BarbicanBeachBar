@@ -5,16 +5,22 @@
  */
 package controllers;
 
+import com.helpers.GeneralHelper;
+import com.helpers.ItemsHelper;
 import com.interfaces.IDisplayUserError;
 import com.interfaces.IInitWrapper;
+import com.models.Item;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 
 /**
  *
@@ -45,9 +51,14 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
     
     private StringProperty error =  new SimpleStringProperty();
     
+    //private ItemsHelper ihelper = new ItemsHelper();
+    
+    private boolean itemExist;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initBindings();
+        activateListeners();
     }
     
     @Override
@@ -58,6 +69,9 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
     @Override
     public void activateListeners() {
         itemNameExistListener();
+        setEventListener(preptime,"please set a valid prepartion time.");
+        setEventListener(price,"please set a valid price.");
+        setEventListener(quantity,"please set a valid quantity.");
     }
 
     @Override
@@ -72,21 +86,95 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
         error.set("");
     }
     
+    
+    @FXML
     private void save(){
         
-        
-        
+        boolean validated = validateInputs();
+     
+        if(validated){
+            ItemsHelper ihelper = new ItemsHelper();
+            
+            Item item = new Item(0, itemname.getText(), Double.parseDouble(price.getText()), Integer.parseInt(preptime.getText()), Integer.parseInt(quantity.getText()));
+            
+            boolean added = ihelper.Add(item);
+            
+            if(added){
+                setDefault();
+                error.set("Added successfully!");
+            }else{
+                setError("Failed to add item.");
+            }
+            
+        }else{
+            setError("Please enter valid input to continue. Item as text every other fileds number only.");
+        }
     }
     
-    
-    private void itemNameExistListener(){
+    private void setEventListener(TextInputControl text, String msg){
         
-        
-        
-        itemname.textProperty().addListener( (e,oldv,newv)->{
-            
+        text.textProperty().addListener( (e,oldv,newv)->{
+            if(!GeneralHelper.isNumeric(oldv) || !GeneralHelper.isNumeric(newv)){
+                
+                setError(msg);
+            }else{
+                setDefault();
+            }
         });
         
+        
     }
     
+    private void itemNameExistListener(){
+        itemname.textProperty().addListener( (e,oldv,newv)->{
+
+           // checkItemValidity(oldv); 
+            checkItemValidity(newv);
+
+        });
+    }
+    
+    private boolean validateInputs(){
+        
+        if(!GeneralHelper.isNumeric(preptime.getText())){
+            return false;
+        }
+        
+        if(!GeneralHelper.isNumeric(price.getText())){
+            return false;
+        }
+        
+        if(!GeneralHelper.isNumeric(quantity.getText())){
+            return false;
+        }
+        
+        if(checkItemValidity(itemname.getText())){
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
+    private boolean checkItemValidity(String str){
+        ItemsHelper ihelper = new ItemsHelper();
+        ArrayList<Item> items = ihelper.GetAll();
+        
+        
+        if(items!=null){
+            
+            long totalMatch = items.stream().filter((w)-> w.getUniqueName().equals(GeneralHelper.EncodeString(str.toLowerCase()))).count();
+            System.out.println(totalMatch);
+            if(totalMatch > 0){
+                setError("item name already exist.");
+                return true;
+            }else{
+                setDefault();
+                return false;
+            }
+        }
+        
+        return false;
+        
+    }
 }

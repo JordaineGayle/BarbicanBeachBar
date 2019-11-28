@@ -26,6 +26,8 @@ public class ScenesHandler {
     
     private static Stage register_stage;
     
+    private static Stage item_stage;
+    
     public static void LoginStage(Stage s){
         try{
             
@@ -96,6 +98,32 @@ public class ScenesHandler {
     }
     
     
+    public static void ItemStage(Stage s){
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/additem.fxml"));
+            //fxmlLoader.setController(RegisterController.class);
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.initModality(Modality.APPLICATION_MODAL);
+            
+            s.setTitle("Add Items");
+            
+            s.setScene(new Scene(root));
+            
+            s.setResizable(false);
+
+            s.sizeToScene();
+            
+            s.show();
+            
+            item_stage = s;
+            
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static Stage getLoginStage(){
         return login_stage;
     }
@@ -106,6 +134,10 @@ public class ScenesHandler {
     
     public static Stage getRegisterStage(){
         return register_stage;
+    }
+    
+    public static Stage getItemStage(){
+        return item_stage;
     }
     
     

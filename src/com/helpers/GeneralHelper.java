@@ -6,6 +6,7 @@
 package com.helpers;
 
 import java.util.Base64;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -21,5 +22,17 @@ public class GeneralHelper {
         byte[] decodedBytes = Base64.getDecoder().decode(str);
         return new String(decodedBytes);
     };
+    
+    public static boolean isNumeric(String strNum) {
+        
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        
+        if (strNum == null) {
+            return false; 
+    
+        }
+        
+        return pattern.matcher(strNum).matches();
+    }
     
 }

@@ -14,7 +14,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import scenes.ScenesHandler;
 
 /**
  * FXML Controller class
@@ -28,6 +31,9 @@ public class DashboardController implements IInitWrapper, IDisplayUserError {
     
     @FXML
     private Label usertype = new Label();
+    
+    @FXML
+    private Button additemBtn = new Button();
     
     
     private StringProperty uNameBinder = new SimpleStringProperty();
@@ -74,4 +80,11 @@ public class DashboardController implements IInitWrapper, IDisplayUserError {
         uTypeBinder.set(CacheHelper.getUserType().toString());
     }
     
+    
+    @FXML
+    private void openAddItemDialog(){
+        
+        ScenesHandler.ItemStage(new Stage());
+        
+    }
 }
