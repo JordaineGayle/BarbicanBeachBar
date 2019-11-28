@@ -5,6 +5,7 @@
  */
 package com.helpers;
 
+import com.models.Cart;
 import com.models.Item;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
@@ -49,6 +50,34 @@ public class RuntimeHelper {
             for(Item item : items){
 
                 tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+
+            }
+        }
+    }
+    
+    public static void loadItemsInCart(Parent p){
+        
+        ItemsHelper ih = new ItemsHelper();
+        
+        ArrayList<Cart> items = ih.cartItems;
+   
+        if(items != null){
+    
+            ObservableList<Node> node = p.getChildrenUnmodifiable();
+
+            BorderPane bp = (BorderPane)node.get(1);
+
+            node = bp.getChildren();
+
+            ScrollPane sp = (ScrollPane) node.get(1);
+
+            VBox tp = (VBox) sp.getContent();
+            
+            for(Cart item : items){
+
+                System.out.println(item.getItemName());
+                
+                //tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
 
             }
         }

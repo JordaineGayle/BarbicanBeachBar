@@ -92,7 +92,7 @@ public class ScenesHandler {
             
             RuntimeHelper.loadItems(root);
             
-            System.out.println(customer_stage);
+            //System.out.println(customer_stage);
             
             login_stage.close();
             
@@ -204,6 +204,8 @@ public class ScenesHandler {
             s.show();
             
             cart_stage = s;
+            
+            RuntimeHelper.loadItemsInCart(root);
             
         } catch(IOException e) {
             e.printStackTrace();
