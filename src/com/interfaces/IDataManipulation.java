@@ -37,45 +37,11 @@ public interface IDataManipulation<T> {
     public ArrayList<T> Query(Object params);
     
     public String toJson(T o);
-//    {
-//        
-//        Gson g = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-//        
-//        String jsonString = g.toJson(o);
-//        
-//        return jsonString;
-//        
-//    }
     
     public String toJson(ArrayList<T> o);
-//    {
-//        
-//        Gson g = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-//        
-//        String jsonString = g.toJson(o);
-//        
-//        return jsonString;
-//    }
     
     public T fromJson(String str);
-//    {
-//        
-//        Gson g = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-//        
-//        T jsonObj = g.fromJson(str,type);
-//        
-//        return jsonObj;
-//    }
-
+    
     public ArrayList<T> fromJsonArray(String str);
-//    {
-//        
-//        Gson g = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-//        
-//        ArrayList<T> jsonObj = g.fromJson((String)o,t);
-//        
-//        return jsonObj;
-//        
-//    }
     
 }
