@@ -28,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import scenes.ScenesHandler;
 
 /**
@@ -83,7 +84,17 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     
     @FXML
     private void viewcart(){
-        ItemsHelper.cartItems.forEach(e -> System.out.println(e.getQuantity())); 
+        
+        if(ItemsHelper.cartItems.size() <= 0){
+            
+            ScenesHandler.AlertStage(new Stage());
+            AlertdialogController.showError("Cart is empty.");
+        }else{
+            
+            ScenesHandler.CartStage(new Stage());
+            
+            ItemsHelper.cartItems.forEach(e -> System.out.println(e.getQuantity())); 
+        }
         
     }
     

@@ -29,6 +29,10 @@ public class ScenesHandler {
     
     private static Stage item_stage;
     
+    private static Stage alert_stage;
+    
+    private static Stage cart_stage;
+    
     private static Stage customer_stage;
     
     public static void LoginStage(Stage s){
@@ -151,6 +155,61 @@ public class ScenesHandler {
         }
     }
     
+    public static void AlertStage(Stage s){
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/alertdialog.fxml"));
+            //fxmlLoader.setController(RegisterController.class);
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.initModality(Modality.APPLICATION_MODAL);
+            
+            s.setTitle("Warning !");
+            
+            s.setScene(new Scene(root));
+            
+            s.setResizable(false);
+
+            s.sizeToScene();
+            
+            s.show();
+            
+            alert_stage = s;
+            
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    public static void CartStage(Stage s){
+        try {
+            
+            FXMLLoader fxmlLoader;
+            
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/cartview.fxml"));
+            
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.initModality(Modality.APPLICATION_MODAL);
+            
+            s.setTitle("Proceed to purchase");
+            
+            s.setScene(new Scene(root));
+            
+            s.setResizable(false);
+
+            s.sizeToScene();
+            
+            s.show();
+            
+            cart_stage = s;
+            
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static Stage getLoginStage(){
         return login_stage;
     }
@@ -171,5 +230,12 @@ public class ScenesHandler {
         return item_stage;
     }
     
+    public static Stage getAlertStage(){
+        return alert_stage;
+    }
+    
+    public static Stage getCartStage(){
+        return cart_stage;
+    }
     
 }

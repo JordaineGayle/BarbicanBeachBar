@@ -7,6 +7,7 @@ package com.helpers;
 
 import com.models.Cart;
 import com.models.Item;
+import controllers.AlertdialogController;
 import controllers.CustomerdashController;
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -25,6 +26,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import scenes.ScenesHandler;
 
 /**
  *
@@ -50,7 +53,7 @@ public class CustomSceneBuilder {
         
         String url = item.getImageUrl();
         
-        if(url == "" || url == null){
+        if(url.isEmpty()){
             url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png";
         }
         
@@ -116,7 +119,7 @@ public class CustomSceneBuilder {
                         ItemsHelper.cartItems = cartitems;
                         
                     }else{
-                        obtainedCart = new Cart(item.getItemId(),item.getName(),yourQuantity,item.getPrice(),yourQuantity*item.getPrice());
+                        obtainedCart = new Cart(item.getItemId(),item.getName(),0,item.getPrice(),yourQuantity*item.getPrice());
                     }
                     
                     int inStock = item.getQuantity();
@@ -130,11 +133,13 @@ public class CustomSceneBuilder {
                         CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
                     }else{
                         ItemsHelper.cartItems.add(obtainedCart);
-                        System.out.println("out of stock for today.");
+                        ScenesHandler.AlertStage(new Stage());
+                        AlertdialogController.showError("out of stock.");
                     }
                     
                 }else{
-                    System.out.println("Unable to add item to cart");
+                    ScenesHandler.AlertStage(new Stage());
+                    AlertdialogController.showError("Invalid quantity submitted.");
                 }
                 
             }
