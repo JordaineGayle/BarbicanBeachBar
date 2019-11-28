@@ -80,7 +80,7 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
     
     @FXML
     protected void login(){
-        
+        ScenesHandler.CustomerStage(new Stage());
         UserHelper uhelper = new UserHelper();
         
         UserType utype = getUsertype();
@@ -92,10 +92,15 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
             try{
                 
                 uhelper.loginUser(username.getText(), password.getText(),utype);
-                      
+                
                 error.set("Logged in successfully....Please wait");
                 
-                ScenesHandler.DashboardStage(new Stage());
+                if(utype == UserType.Admin){
+                    
+                    ScenesHandler.DashboardStage(new Stage());
+                }else{
+                    ScenesHandler.CustomerStage(new Stage());
+                }
                 
             }catch(Exception e){
                 setError(e.getMessage());

@@ -6,6 +6,7 @@
 package scenes;
 
 import barbicanbeachbaroopproject2019.Main;
+import com.helpers.RuntimeHelper;
 import controllers.RegisterController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,8 @@ public class ScenesHandler {
     private static Stage register_stage;
     
     private static Stage item_stage;
+    
+    private static Stage customer_stage;
     
     public static void LoginStage(Stage s){
         try{
@@ -62,6 +65,30 @@ public class ScenesHandler {
             s.show();
             
             dashboard_stage = s;
+            
+            login_stage.close();
+            
+        } catch(IOException e) {
+            
+            e.printStackTrace();
+        }
+    }
+    
+    public static void CustomerStage(Stage s){
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/customerdash.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.setScene(new Scene(root));  
+            
+            s.show();
+            
+            customer_stage = s;
+            
+            RuntimeHelper.loadItems(root);
+            
+            System.out.println(customer_stage);
             
             login_stage.close();
             
@@ -130,6 +157,10 @@ public class ScenesHandler {
     
     public static Stage getDashboardStage(){
         return dashboard_stage;
+    }
+    
+    public static Stage getCustomerStage(){
+        return customer_stage;
     }
     
     public static Stage getRegisterStage(){

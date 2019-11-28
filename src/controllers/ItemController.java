@@ -31,6 +31,9 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
     @FXML
     private TextField itemname = new TextField();
     
+    @FXML 
+    private TextField imageurl = new TextField();
+    
     @FXML
     private TextField preptime = new TextField();
     
@@ -95,7 +98,7 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
         if(validated){
             ItemsHelper ihelper = new ItemsHelper();
             
-            Item item = new Item(0, itemname.getText(), Double.parseDouble(price.getText()), Integer.parseInt(preptime.getText()), Integer.parseInt(quantity.getText()));
+            Item item = new Item(0, itemname.getText(),imageurl.getText(),Double.parseDouble(price.getText()), Integer.parseInt(preptime.getText()), Integer.parseInt(quantity.getText()));
             
             boolean added = ihelper.Add(item);
             
@@ -107,7 +110,7 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
             }
             
         }else{
-            setError("Please enter valid input to continue. Item as text every other fileds number only.");
+            setError("Please correct all issues befor submitting form.");
         }
     }
     
@@ -127,8 +130,6 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
     
     private void itemNameExistListener(){
         itemname.textProperty().addListener( (e,oldv,newv)->{
-
-           // checkItemValidity(oldv); 
             checkItemValidity(newv);
 
         });
@@ -164,7 +165,7 @@ public class ItemController implements IInitWrapper, IDisplayUserError {
         if(items!=null){
             
             long totalMatch = items.stream().filter((w)-> w.getUniqueName().equals(GeneralHelper.EncodeString(str.toLowerCase()))).count();
-            System.out.println(totalMatch);
+            //System.out.println(totalMatch);
             if(totalMatch > 0){
                 setError("item name already exist.");
                 return true;

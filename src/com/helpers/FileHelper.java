@@ -18,7 +18,7 @@ import java.nio.file.Paths;
  */
 public class FileHelper {
     
-    private String absolutePath = Paths.get("").toAbsolutePath().toString()+"/src/database/structure/files/";
+    private String absolutePath = PathHelper.fileAbsPath;
     
     private String fname;
     

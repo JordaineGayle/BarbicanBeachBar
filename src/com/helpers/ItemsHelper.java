@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.interfaces.IDataManipulation;
+import com.models.Cart;
 import com.models.Item;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -28,6 +29,8 @@ public class ItemsHelper implements IDataManipulation<Item> {
     private FileHelper fp = new FileHelper("items.json");
     
     private final Gson json = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+    
+    public static ArrayList<Cart> cartItems = new ArrayList<Cart>();
     
     @Override
     public boolean Add(Item obj) {

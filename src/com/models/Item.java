@@ -28,6 +28,8 @@ public class Item implements Comparable<Item> {
     
     private int quantity;
     
+    private String imageUrl;
+    
     private Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
     
     public Item(){
@@ -42,9 +44,11 @@ public class Item implements Comparable<Item> {
         preparationtTime = 0;
 
         quantity = 0;
+        
+        imageUrl = "";
     }
 
-    public Item(int itemId, String name, double price, int prepTime, int quantity){
+    public Item(int itemId, String name, String imageUrl,double price, int prepTime, int quantity){
 
         this.itemId = itemId;
 
@@ -57,6 +61,8 @@ public class Item implements Comparable<Item> {
         this.preparationtTime = prepTime;
 
         this.quantity = quantity;
+        
+        this.imageUrl = imageUrl;
 
     }
 
@@ -64,6 +70,10 @@ public class Item implements Comparable<Item> {
         this.itemId = id;
     }
 
+    public void setImageUrl(String url){
+        this.imageUrl = url;
+    }
+    
     public void setName(String name){
         this.name = name;
     }
@@ -106,6 +116,10 @@ public class Item implements Comparable<Item> {
 
     public Timestamp getTimestamp(){
         return this.timeStamp;
+    }
+    
+    public String getImageUrl(){
+        return this.imageUrl;
     }
 
     @Override
