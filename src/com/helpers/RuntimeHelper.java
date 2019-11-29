@@ -18,6 +18,7 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -65,21 +66,31 @@ public class RuntimeHelper {
     
             ObservableList<Node> node = p.getChildrenUnmodifiable();
 
-            BorderPane bp = (BorderPane)node.get(1);
-
-            node = bp.getChildren();
-
-            ScrollPane sp = (ScrollPane) node.get(1);
-
-            VBox tp = (VBox) sp.getContent();
+            System.out.println(node);
             
-            for(Cart item : items){
+            ScrollPane sp = (ScrollPane)node.get(1);
 
-                System.out.println(item.getItemName());
-                
-                //tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+            node = sp.getContent();
+            
+            System.out.println(node);
+            
+            HBox hb = (HBox)node.get(0);
 
-            }
+            node = hb.getChildren();
+            
+            System.out.println(node);
+//
+//            ScrollPane sp = (ScrollPane) node.get(1);
+//
+//            VBox tp = (VBox) sp.getContent();
+//            
+//            for(Cart item : items){
+//
+//                System.out.println(item.getItemName());
+//                
+//                //tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+//
+//            }
         }
     }
     
