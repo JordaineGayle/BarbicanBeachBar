@@ -5,6 +5,8 @@
  */
 package com.helpers;
 
+import com.enums.Enums;
+import com.enums.Enums.UserType;
 import com.models.Cart;
 import com.models.Item;
 import com.models.Order;
@@ -63,6 +65,34 @@ public class RuntimeHelper {
         }
     }
     
+    public static void loadAdminItems(Parent p){
+        
+        ItemsHelper ih = new ItemsHelper();
+        
+        ArrayList<Item> items = ih.GetAll();
+        
+        Collections.sort(items);
+   
+        if(items != null){
+    
+            ObservableList<Node> node = p.getChildrenUnmodifiable();
+
+            BorderPane bp = (BorderPane)node.get(2);
+
+            node = bp.getChildren();
+
+            ScrollPane sp = (ScrollPane) node.get(1);
+
+            TilePane tp = (TilePane) sp.getContent();
+            
+            for(Item item : items){
+
+                tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+
+            }
+        }
+    }
+    
     public static void loadItemsPartial(Parent p){
         
         ItemsHelper ih = new ItemsHelper();
@@ -79,10 +109,55 @@ public class RuntimeHelper {
             
             tp.getChildren().clear();
             
-            for(Item item : items){
+            
+            if(CacheHelper.getUserType() == UserType.Customer){
+                for(Item item : items){
 
-                tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+                    tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
 
+                }
+            }else{
+                
+                for(Item item : items){
+
+                    tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+
+                }
+            }
+        }
+    }
+    
+    public static void loadIOrdersPartial(Parent p){
+        
+        OrdersHelper ih = new OrdersHelper();
+        
+        ArrayList<Order> items = ih.GetAll();
+        
+        Collections.sort(items);
+   
+        if(items != null){
+    
+            ScrollPane sp = (ScrollPane)p;
+
+            VBox vp = (VBox) sp.getContent();
+            
+            vp.getChildren().clear();
+            
+            
+            
+            if(CacheHelper.getUserType() == UserType.Customer){
+                for(Order item : items){
+                    if(CacheHelper.getUseremail().toLowerCase().equals(item.getUser().getEmailAddress().toLowerCase())){
+                        vp.getChildren().add(CustomSceneBuilder.BuildCustomerOrderItemHBox(item));
+                    }
+                }
+            }else{
+                
+                for(Order item : items){
+
+                    vp.getChildren().add(CustomSceneBuilder.BuildAdminOrderItemHBox(item));
+
+                }
             }
         }
     }
@@ -147,16 +222,30 @@ public class RuntimeHelper {
             
             tp.getChildren().clear();
             
-            for(Item item : items){
+            if(CacheHelper.getUserType() == UserType.Customer){
+                for(Item item : items){
 
-                for(String s : res){
-                    if(item.getName().toLowerCase().contains(s.trim().toLowerCase())){
-                        
-                        tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
-                        break;
+                    for(String s : res){
+                        if(item.getName().toLowerCase().contains(s.trim().toLowerCase())){
+
+                            tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+                            break;
+                        }
                     }
+
                 }
-  
+            }else{
+                for(Item item : items){
+
+                    for(String s : res){
+                        if(item.getName().toLowerCase().contains(s.trim().toLowerCase())){
+
+                            tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+                            break;
+                        }
+                    }
+
+                }
             }
         }
     }
@@ -182,12 +271,23 @@ public class RuntimeHelper {
    
         if(items != null){
     
-            for(Order order : items){
-
-                if(CacheHelper.getUseremail().toLowerCase() == order.getUser().getEmailAddress().toLowerCase()){
-                    vb1.getChildren().add(CustomSceneBuilder.BuildOrderItemHBox(order));
+            if(CacheHelper.getUserType() == UserType.Customer){
+                
+                for(Order order : items){
+               
+                    if(CacheHelper.getUseremail().toLowerCase().equals(order.getUser().getEmailAddress().toLowerCase())){
+                        vb1.getChildren().add(CustomSceneBuilder.BuildCustomerOrderItemHBox(order));
+                    }
+                }
+                
+            }else{
+                
+                for(Order order : items){
+                    vb1.getChildren().add(CustomSceneBuilder.BuildAdminOrderItemHBox(order));
                 }
             }
+            
+            
         }
     }
 

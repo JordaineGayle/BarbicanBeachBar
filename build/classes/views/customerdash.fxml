@@ -100,7 +100,7 @@
             </Label>
             <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="200.0" stylesheets="@css/customscroll.css">
                <content>
-                  <VBox spacing="10.0" style="-fx-background-color: #212121;" />
+                  <VBox fx:id="vpane" spacing="10.0" style="-fx-background-color: #212121;" />
                </content>
             </ScrollPane>
          </children>

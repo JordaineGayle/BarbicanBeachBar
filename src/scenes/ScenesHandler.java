@@ -72,6 +72,10 @@ public class ScenesHandler {
             
             dashboard_stage = s;
             
+            RuntimeHelper.loadAdminItems(root);
+            
+            RuntimeHelper.loadOrders(root);
+            
             login_stage.close();
             
         } catch(IOException e) {

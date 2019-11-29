@@ -38,6 +38,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import scenes.ScenesHandler;
@@ -164,6 +165,8 @@ public class CustomSceneBuilder {
         return vb;
     }
     
+    
+    
     public static HBox BuildCartItemHBox(Cart item){
         
        HBox hb = new HBox();
@@ -231,7 +234,77 @@ public class CustomSceneBuilder {
         
     }
     
-    public static HBox BuildOrderItemHBox(Order item){
+    public static HBox BuildCustomerOrderItemHBox(Order item){
+        
+       HBox hb = new HBox();
+       
+       String localUrl = "";
+       File file = new File(PathHelper.imageAbsPath+"icons8_time_machine_50px_1.png");
+ 
+        try {
+            localUrl = file.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img = new Image(localUrl,true);
+       
+        ImageView imv = new ImageView(img);
+        
+        imv.setFitHeight(45);
+        imv.setFitWidth(45);
+        
+        hb.getChildren().add(imv);
+       
+        VBox vb = new VBox();
+   
+        
+        Label statusLabel = new Label("Status: "+item.getOrderStatus().name());
+       
+        statusLabel.setFont(Font.font("Arial Black"));
+        
+        statusLabel.setTextFill(Paint.valueOf("WHITE"));
+       
+        
+        vb.getChildren().add(statusLabel);
+       
+        HBox innerBox = new HBox();
+       
+        List<String> nameList = item.getItems().stream().map(Item::getName).collect(Collectors.toList());
+       
+        Label itemLabel = new Label(String.join("\n",nameList));
+        
+        itemLabel.setTextFill(Paint.valueOf("WHITE"));
+       
+        innerBox.getChildren().add(itemLabel);
+       
+        Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
+       
+        timeLabel.setAlignment(Pos.CENTER_RIGHT);
+        
+        timeLabel.setFont(Font.font("Candara"));
+       
+        timeLabel.setTextFill(Paint.valueOf("#dd0e0e"));
+        
+        //timeLabel.setTooltip("time");
+        
+        innerBox.getChildren().add(timeLabel);
+       
+        vb.getChildren().add(innerBox);
+       
+        hb.getChildren().add(vb);
+       
+        return hb;
+    }
+    
+    
+    
+    
+    
+    
+    /*Admin section*/
+    
+    public static HBox BuildAdminOrderItemHBox(Order item){
         
        HBox hb = new HBox();
        
@@ -255,7 +328,7 @@ public class CustomSceneBuilder {
        
         VBox vb = new VBox();
        
-        Label nameLabel = new Label(item.getUser().getFirstName()+" "+item.getUser().getLastName());
+        Label nameLabel = new Label("User: "+item.getUser().getFirstName()+" "+item.getUser().getLastName());
        
         nameLabel.setFont(Font.font("Arial Black"));
         
@@ -263,6 +336,15 @@ public class CustomSceneBuilder {
        
         
         vb.getChildren().add(nameLabel);
+        
+        Label statusLabel = new Label("Status: "+item.getOrderStatus().name());
+       
+        statusLabel.setFont(Font.font("Arial Black"));
+        
+        statusLabel.setTextFill(Paint.valueOf("WHITE"));
+       
+        
+        vb.getChildren().add(statusLabel);
        
         HBox innerBox = new HBox();
        
@@ -276,7 +358,7 @@ public class CustomSceneBuilder {
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
        
-        timeLabel.setAlignment(Pos.CENTER);
+        timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
         timeLabel.setFont(Font.font("Candara"));
        
@@ -291,5 +373,108 @@ public class CustomSceneBuilder {
         hb.getChildren().add(vb);
        
         return hb;
+    }
+    
+    public static VBox BuildAdminItemVBox(Item item){
+        
+        VBox vb = new VBox();
+
+        vb.fillWidthProperty();
+
+        vb.setStyle("-fx-background-color:white;-fx-background-radius:15px;");
+
+        vb.setSpacing(10);
+
+        vb.setPadding(new Insets(10,10,10,10));
+
+        vb.setEffect(BuildDShadow());
+        
+        ImageView imv = new ImageView();
+        
+        String url = item.getImageUrl();
+        
+        if(url.isEmpty()){
+            url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png";
+        }
+        
+        Image img = new Image(url,true);
+        
+        imv.setImage(img);
+        
+        imv.setFitWidth(200);
+        
+        imv.setFitHeight(150);
+        
+        vb.getChildren().add(imv);
+
+        vb.getChildren().add(new Label("Item: "+item.getName().toUpperCase()));
+        
+        vb.getChildren().add(new Label("Prepartion Time: "+String.valueOf(item.getPrepTime())+" min"));
+        
+        vb.getChildren().add(new Label("Price: USD $"+String.valueOf(item.getPrice())));
+        
+        HBox hb = new HBox();
+        Region r = new Region();
+        HBox.setHgrow(r, Priority.ALWAYS);
+        
+        
+        
+        String localUrl1 = "";
+        File file = new File(PathHelper.imageAbsPath+"icons8_edit_property_32px.png");
+ 
+        try {
+            localUrl1 = file.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img1 = new Image(localUrl1,true);
+       
+        ImageView imv1 = new ImageView(img1);
+        
+        
+        imv1.setFitWidth(20);
+        imv1.setFitHeight(20);
+        
+        String localUrl2 = "";
+        File file1 = new File(PathHelper.imageAbsPath+"icons8_delete_32px.png");
+ 
+        try {
+            localUrl2 = file1.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img2 = new Image(localUrl2,true);
+        
+        ImageView imv2 = new ImageView(img2);
+        
+        imv2.setFitWidth(20);
+        imv2.setFitHeight(20);
+        
+        Button edit = new Button("Edit");
+        edit.setGraphic(imv1);
+        edit.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+        edit.setTextFill(Paint.valueOf("WHITE"));
+        edit.setStyle("-fx-background-color: #212121; -fx-background-radius: 30px;");
+        edit.setPrefWidth(88);
+        edit.setPrefHeight(25);
+        
+        
+        Button delete = new Button("Delete");
+        delete.setGraphic(imv2);
+        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+        delete.setTextFill(Paint.valueOf("WHITE"));
+        delete.setStyle("-fx-background-color: #212121; -fx-background-radius: 30px;");
+        delete.setPrefWidth(88);
+        delete.setPrefHeight(25);
+        
+        hb.getChildren().add(edit);
+        hb.getChildren().add(r);
+        hb.getChildren().add(delete);
+        
+        vb.getChildren().add(hb);
+        
+        return vb;
     }
 }

@@ -69,6 +69,9 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     private ImageView viewcartitems = new ImageView();
     
     @FXML
+    private VBox vpane = new VBox();
+    
+    @FXML
     private TilePane tpane = new TilePane();
     
     private StringProperty error = new SimpleStringProperty();
@@ -111,13 +114,6 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
         
             Parent p = tpane.getParent().getParent().getParent();
             
-//            System.out.println(p.getParent());
-//            
-//            
-//            System.out.println(p.getParent());
-//            
-//            
-//            System.out.println(p.getParent().getParent().getParent().getChildrenUnmodifiable());
             if(!newv.isEmpty()){
                 
                 List<String> str = Arrays.asList(newv.toLowerCase().split(","));
@@ -181,7 +177,12 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     private void refreshScreen(){
         Parent p = tpane.getParent().getParent().getParent();
         RuntimeHelper.loadItemsPartial(p);
+        
+        Parent vp = vpane.getParent().getParent().getParent();
+        RuntimeHelper.loadIOrdersPartial(vp);
     }
+    
+    
     
     
 }

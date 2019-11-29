@@ -30,14 +30,14 @@
     "timeStamp": "Nov 28, 2019 1:19:08 AM"
   },
   {
-    "itemId": 1,
-    "uniqueName": "cHVtcGtpbiBzb3Vw",
-    "name": "Pumpkin Soup",
-    "price": 125.0,
-    "preparationtTime": 60,
-    "quantity": 512,
-    "imageUrl": "https://www.aafoodservice.com/wp-content/themes/custom-theme/img/slider-v1704.jpg",
-    "timeStamp": "Nov 28, 2019 5:20:55 PM"
+    "itemId": 5,
+    "uniqueName": "YWNrZWUgJiBzYWx0IGZpc2g\u003d",
+    "name": "ackee \u0026 salt fish",
+    "price": 222.0,
+    "preparationtTime": 33,
+    "quantity": 7,
+    "imageUrl": "",
+    "timeStamp": "Nov 28, 2019 1:52:04 AM"
   },
   {
     "itemId": 3,
@@ -45,18 +45,18 @@
     "name": "Bake Bean",
     "price": 190.34,
     "preparationtTime": 23,
-    "quantity": 20,
+    "quantity": 5,
     "imageUrl": "",
     "timeStamp": "Nov 28, 2019 1:07:52 AM"
   },
   {
-    "itemId": 5,
-    "uniqueName": "YWNrZWUgJiBzYWx0IGZpc2g\u003d",
-    "name": "ackee \u0026 salt fish",
-    "price": 222.0,
-    "preparationtTime": 33,
-    "quantity": 12,
-    "imageUrl": "",
-    "timeStamp": "Nov 28, 2019 1:52:04 AM"
+    "itemId": 1,
+    "uniqueName": "cHVtcGtpbiBzb3Vw",
+    "name": "Pumpkin Soup",
+    "price": 125.0,
+    "preparationtTime": 60,
+    "quantity": 462,
+    "imageUrl": "https://www.aafoodservice.com/wp-content/themes/custom-theme/img/slider-v1704.jpg",
+    "timeStamp": "Nov 28, 2019 5:20:55 PM"
   }
 ]
