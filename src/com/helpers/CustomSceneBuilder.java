@@ -7,6 +7,7 @@ package com.helpers;
 
 import com.models.Cart;
 import com.models.Item;
+import com.models.Order;
 import controllers.AlertdialogController;
 import controllers.CustomerdashController;
 import java.util.ArrayList;
@@ -222,5 +223,33 @@ public class CustomSceneBuilder {
         
         return l;
         
+    }
+    
+    public static HBox BuildOrderItemHBox(Order item){
+        
+       HBox hb = new HBox();
+       
+//       Region r = new Region();
+//       HBox.setHgrow(r, Priority.ALWAYS);
+//       
+//       Region r1 = new Region();
+//       HBox.setHgrow(r1, Priority.ALWAYS);
+//       
+//       Region r2 = new Region();
+//       HBox.setHgrow(r2, Priority.ALWAYS);
+//       
+//       hb.setMinHeight(HBox.USE_COMPUTED_SIZE);
+//       
+//       hb.getChildren().add(BuildLabel(item.getItemName()));
+//       hb.getChildren().add(r);
+//       hb.getChildren().add(BuildLabel("USD $"+item.getPrice()));
+//       hb.getChildren().add(r1);
+//       hb.getChildren().add(BuildLabel("x "+item.getQuantity()));
+//       hb.getChildren().add(r2);
+//       hb.getChildren().add(BuildLabel("USD $"+item.getTotalPrice()));
+//       
+//       hb.setSpacing(15);
+//       hb.setPadding(new Insets(10,10,10,10));
+       return hb;
     }
 }

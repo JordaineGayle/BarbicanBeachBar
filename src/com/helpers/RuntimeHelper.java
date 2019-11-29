@@ -7,7 +7,12 @@ package com.helpers;
 
 import com.models.Cart;
 import com.models.Item;
+import com.models.Order;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -35,6 +40,8 @@ public class RuntimeHelper {
         ItemsHelper ih = new ItemsHelper();
         
         ArrayList<Item> items = ih.GetAll();
+        
+        Collections.sort(items);
    
         if(items != null){
     
@@ -47,6 +54,30 @@ public class RuntimeHelper {
             ScrollPane sp = (ScrollPane) node.get(1);
 
             TilePane tp = (TilePane) sp.getContent();
+            
+            for(Item item : items){
+
+                tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+
+            }
+        }
+    }
+    
+    public static void loadItemsPartial(Parent p){
+        
+        ItemsHelper ih = new ItemsHelper();
+        
+        ArrayList<Item> items = ih.GetAll();
+        
+        Collections.sort(items);
+   
+        if(items != null){
+    
+            ScrollPane sp = (ScrollPane)p;
+
+            TilePane tp = (TilePane) sp.getContent();
+            
+            tp.getChildren().clear();
             
             for(Item item : items){
 
@@ -100,6 +131,75 @@ public class RuntimeHelper {
         }
     }
     
+    public static void searchItems(Parent p, List<String> res){
+        
+        ItemsHelper ih = new ItemsHelper();
+        
+        ArrayList<Item> items = ih.GetAll();
+        
+        Collections.sort(items);
+   
+        if(items != null){
+            
+            ScrollPane sp = (ScrollPane)p;
+
+            TilePane tp = (TilePane) sp.getContent();
+            
+            tp.getChildren().clear();
+            
+            for(Item item : items){
+
+                for(String s : res){
+                    if(item.getName().toLowerCase().contains(s.trim().toLowerCase())){
+                        
+                        tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+                        break;
+                    }
+                }
+  
+            }
+        }
+    }
+
     
+    public static void loadOrders(Parent p){
+        
+        ObservableList<Node> node = p.getChildrenUnmodifiable();
+        
+        VBox vb = (VBox)node.get(1);
+        
+        node = vb.getChildren();
+        
+        ScrollPane sp = (ScrollPane)node.get(1);
+        
+        VBox vb1 = (VBox)sp.getContent();
+        
+        
+//        OrdersHelper oh = new OrdersHelper();
+//        
+//        ArrayList<Order> items = oh.GetAll();
+//        
+//        Collections.sort(items);
+//   
+//        if(items != null){
+//    
+//            ObservableList<Node> node = p.getChildrenUnmodifiable();
+//
+//            BorderPane bp = (BorderPane)node.get(2);
+//
+//            node = bp.getChildren();
+//
+//            ScrollPane sp = (ScrollPane) node.get(1);
+//
+//            TilePane tp = (TilePane) sp.getContent();
+//            
+//            for(Order order : items){
+//
+//                tp.getChildren().add(null/*CustomSceneBuilder.BuildCustomerItemVBox(item)*/);
+//
+//            }
+//        }
+    }
+
 }
     

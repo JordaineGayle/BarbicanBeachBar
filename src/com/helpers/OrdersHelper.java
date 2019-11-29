@@ -63,6 +63,32 @@ public class OrdersHelper implements IDataManipulation<Order> {
         
     }
 
+    private boolean ImplicitAdd(Order obj) {
+       
+        if(obj == null){
+            return false;
+        }
+        
+        ArrayList<Order> items = GetAll();
+        
+        if(items == null){
+            items = new ArrayList<>();
+        }
+        
+        items.add(obj);
+        
+        String data = toJson(items);
+        
+        try {
+            fp.write(data);
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    }
+    
     @Override
     public boolean Add(ArrayList<Order> lObj) {
         
@@ -140,7 +166,7 @@ public class OrdersHelper implements IDataManipulation<Order> {
         
         if(Delete(id)){
             
-            if(Add(obj)){
+            if(ImplicitAdd(obj)){
                 return true;
             }
             

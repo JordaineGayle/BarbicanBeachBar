@@ -9,11 +9,13 @@ import barbicanbeachbaroopproject2019.Main;
 import com.helpers.RuntimeHelper;
 import controllers.RegisterController;
 import java.io.IOException;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -86,12 +88,17 @@ public class ScenesHandler {
             
             s.setScene(new Scene(root));  
             
+            s.setMaximized(true);
+            
+            s.hide();
+            
             s.show();
             
             customer_stage = s;
             
             RuntimeHelper.loadItems(root);
             
+            RuntimeHelper.loadOrders(root);
             //System.out.println(customer_stage);
             
             login_stage.close();
@@ -200,14 +207,23 @@ public class ScenesHandler {
             //s.setResizable(false);
             
             s.setMaximized(true);
-
-            s.sizeToScene();
+            
+            s.hide();
             
             s.show();
             
             cart_stage = s;
             
             RuntimeHelper.loadItemsInCart(root);
+            
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    customer_stage.hide();
+                    customer_stage.close();
+                    
+                    CustomerStage(new Stage());
+                }
+            });
             
         } catch(IOException e) {
             e.printStackTrace();

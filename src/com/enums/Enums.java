@@ -17,4 +17,10 @@ public class Enums {
         Guest
     }
     
+    public enum Status{
+        InProgress,
+        Completed,
+        Cancelled
+    }
+    
 }

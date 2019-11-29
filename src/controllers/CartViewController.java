@@ -146,7 +146,11 @@ public class CartViewController implements Initializable {
                 
                 ih.cartItems.clear();
                 
-                CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
+                if(String.valueOf(ItemsHelper.cartItems.size()).equals("0")){
+                    CustomerdashController.customerDashIntProp.set("");
+                }else{
+                    CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
+                }
                 
                 ScenesHandler.AlertStage(new Stage());
                 AlertdialogController.showError("Your order has been processed. You will receive an email shortly.");
@@ -158,7 +162,7 @@ public class CartViewController implements Initializable {
             
         }else{
             ScenesHandler.AlertStage(new Stage());
-            AlertdialogController.showError("Order has already been processed. "+counter);
+            AlertdialogController.showError("Order has already been processed.");
         }
         
         

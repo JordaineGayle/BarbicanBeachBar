@@ -5,6 +5,8 @@
  */
 package com.models;
 
+import com.enums.Enums;
+import com.enums.Enums.Status;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -24,6 +26,8 @@ public class Order implements Comparable<Order> {
     private int totalPrepTime;
     
     private double totalPrice;
+    
+    private Status orderStatus;
 
     private Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
 
@@ -39,6 +43,8 @@ public class Order implements Comparable<Order> {
         totalPrepTime = 0;
         
         totalPrice = 0;
+        
+        orderStatus = Enums.Status.InProgress;
 
     }
 
@@ -53,10 +59,16 @@ public class Order implements Comparable<Order> {
         this.totalPrepTime = prepTime;
         
         this.totalPrice = totalPrice;
+        
+        orderStatus = Enums.Status.InProgress;
     }
 
     public void setOrderId(int orderId){
         this.orderId = orderId;
+    }
+    
+    public void setOrderStatus(Status status){
+        this.orderStatus = status;
     }
 
     public void setItems(ArrayList<Item> items){
@@ -93,6 +105,10 @@ public class Order implements Comparable<Order> {
     
     public double getTotalPrice(){
         return this.totalPrice;
+    }
+    
+    public Status getOrderStatus(){
+        return this.orderStatus;
     }
 
     public Timestamp getTimeStamp(){

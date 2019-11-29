@@ -80,7 +80,7 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
     
     @FXML
     protected void login(){
-       // ScenesHandler.CustomerStage(new Stage());
+       ScenesHandler.CustomerStage(new Stage());
         UserHelper uhelper = new UserHelper();
         
         UserType utype = getUsertype();

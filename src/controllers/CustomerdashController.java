@@ -5,13 +5,17 @@
  */
 package controllers;
 
+import com.helpers.CacheHelper;
 import com.helpers.ItemsHelper;
+import com.helpers.RuntimeHelper;
 import com.interfaces.IDisplayUserError;
 import com.interfaces.IInitWrapper;
 import com.models.Cart;
 import com.models.Item;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -21,9 +25,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
@@ -42,7 +48,16 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     private Label cartcount = new Label();
     
     @FXML
+    private Button refreshBtn = new Button();
+    
+    @FXML
     private Button cardadd = new Button();
+    
+    @FXML 
+    private ImageView logout = new ImageView();
+    
+    @FXML
+    private TextField searcharea = new TextField();
     
     @FXML
     private ImageView viewcartitems = new ImageView();
@@ -65,11 +80,41 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     @Override
     public void initBindings() {
         cartcount.textProperty().bindBidirectional(customerDashIntProp);
+        activateListeners();
     }
 
     @Override
     public void activateListeners() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setListeners();
+    }
+    
+    private void setListeners(){
+        
+        searcharea.textProperty().addListener((e,oldv,newv) -> {
+        
+            Parent p = tpane.getParent().getParent().getParent();
+            
+//            System.out.println(p.getParent());
+//            
+//            
+//            System.out.println(p.getParent());
+//            
+//            
+//            System.out.println(p.getParent().getParent().getParent().getChildrenUnmodifiable());
+            if(!newv.isEmpty()){
+                
+                List<String> str = Arrays.asList(newv.toLowerCase().split(","));
+                
+                RuntimeHelper.searchItems(p,str);
+                
+            }else{
+                
+                RuntimeHelper.loadItemsPartial(p);
+            }
+            
+            
+        });
+        
     }
 
     @Override
@@ -96,6 +141,29 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
             ItemsHelper.cartItems.forEach(e -> System.out.println(e.getQuantity())); 
         }
         
+    }
+    
+    @FXML
+    private void signOff(){
+        
+        CacheHelper.setUseremail("");
+        
+        CacheHelper.setUsername("");
+        
+        CacheHelper.setUsertype(null);
+        
+        CustomerdashController.customerDashIntProp.set("");
+        
+        ScenesHandler.getCustomerStage().close();
+        
+        ScenesHandler.LoginStage(new Stage());
+        
+    }
+    
+    @FXML
+    private void refreshScreen(){
+        Parent p = tpane.getParent().getParent().getParent();
+        RuntimeHelper.loadItemsPartial(p);
     }
     
     
