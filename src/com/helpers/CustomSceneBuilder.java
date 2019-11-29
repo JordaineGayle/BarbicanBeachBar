@@ -23,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -375,7 +376,7 @@ public class CustomSceneBuilder {
         return hb;
     }
     
-    public static VBox BuildAdminItemVBox(Item item){
+    public static VBox BuildAdminItemVBox(Item item, Parent p){
         
         VBox vb = new VBox();
 
@@ -461,6 +462,9 @@ public class CustomSceneBuilder {
         edit.setPrefHeight(25);
         
         
+        //loadOrders
+        
+        
         Button delete = new Button("Delete");
         delete.setGraphic(imv2);
         delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
@@ -468,6 +472,18 @@ public class CustomSceneBuilder {
         delete.setStyle("-fx-background-color: #212121; -fx-background-radius: 30px;");
         delete.setPrefWidth(88);
         delete.setPrefHeight(25);
+        
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ItemsHelper ihp = new ItemsHelper();
+                
+                if(ihp.Delete(item.getItemId())){
+                    RuntimeHelper.loadAdminItems(p);
+                }
+            }
+        });
+        
         
         hb.getChildren().add(edit);
         hb.getChildren().add(r);

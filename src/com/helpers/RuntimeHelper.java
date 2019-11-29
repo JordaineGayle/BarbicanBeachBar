@@ -87,7 +87,7 @@ public class RuntimeHelper {
             
             for(Item item : items){
 
-                tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+                tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item, p));
 
             }
         }
@@ -120,7 +120,7 @@ public class RuntimeHelper {
                 
                 for(Item item : items){
 
-                    tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+                    tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item,p));
 
                 }
             }
@@ -240,7 +240,7 @@ public class RuntimeHelper {
                     for(String s : res){
                         if(item.getName().toLowerCase().contains(s.trim().toLowerCase())){
 
-                            tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
+                            tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item,p));
                             break;
                         }
                     }
