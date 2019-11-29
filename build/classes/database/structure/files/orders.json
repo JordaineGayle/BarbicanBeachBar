@@ -116,5 +116,64 @@
     "totalPrice": 1178.0,
     "orderStatus": "InProgress",
     "timeStamp": "Nov 29, 2019 6:47:50 AM"
+  },
+  {
+    "orderId": 3,
+    "items": [
+      {
+        "itemId": 2,
+        "uniqueName": "YmFrZSBiZWFuIDQ\u003d",
+        "name": "bake bean 4",
+        "price": 12.0,
+        "preparationtTime": 33,
+        "quantity": 0,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:19:08 AM"
+      },
+      {
+        "itemId": 1,
+        "uniqueName": "cHVtcGtpbiBzb3Vw",
+        "name": "Pumpkin Soup",
+        "price": 4125.0,
+        "preparationtTime": 60,
+        "quantity": 33,
+        "imageUrl": "https://www.aafoodservice.com/wp-content/themes/custom-theme/img/slider-v1704.jpg",
+        "timeStamp": "Nov 28, 2019 5:20:55 PM"
+      },
+      {
+        "itemId": 3,
+        "uniqueName": "YmFrZSBiZWFu",
+        "name": "Bake Bean",
+        "price": 571.02,
+        "preparationtTime": 23,
+        "quantity": 3,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:07:52 AM"
+      },
+      {
+        "itemId": 5,
+        "uniqueName": "YWNrZWUgJiBzYWx0IGZpc2g\u003d",
+        "name": "ackee \u0026 salt fish",
+        "price": 444.0,
+        "preparationtTime": 33,
+        "quantity": 0,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:52:04 AM"
+      }
+    ],
+    "user": {
+      "Id": 10,
+      "FirstName": "Ped",
+      "LastName": "Bar",
+      "EmailAddress": "pbar@gmail.com",
+      "Password": "TG92ZTEyMw\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 29, 2019 8:24:36 AM"
+    },
+    "totalPrepTime": 149,
+    "totalPrice": 5152.02,
+    "orderStatus": "InProgress",
+    "timeStamp": "Nov 29, 2019 8:28:51 AM"
   }
 ]

@@ -174,31 +174,21 @@ public class RuntimeHelper {
         
         VBox vb1 = (VBox)sp.getContent();
         
+        OrdersHelper oh = new OrdersHelper();
         
-//        OrdersHelper oh = new OrdersHelper();
-//        
-//        ArrayList<Order> items = oh.GetAll();
-//        
-//        Collections.sort(items);
-//   
-//        if(items != null){
-//    
-//            ObservableList<Node> node = p.getChildrenUnmodifiable();
-//
-//            BorderPane bp = (BorderPane)node.get(2);
-//
-//            node = bp.getChildren();
-//
-//            ScrollPane sp = (ScrollPane) node.get(1);
-//
-//            TilePane tp = (TilePane) sp.getContent();
-//            
-//            for(Order order : items){
-//
-//                tp.getChildren().add(null/*CustomSceneBuilder.BuildCustomerItemVBox(item)*/);
-//
-//            }
-//        }
+        ArrayList<Order> items = oh.GetAll();
+        
+        Collections.sort(items);
+   
+        if(items != null){
+    
+            for(Order order : items){
+
+                if(CacheHelper.getUseremail().toLowerCase() == order.getUser().getEmailAddress().toLowerCase()){
+                    vb1.getChildren().add(CustomSceneBuilder.BuildOrderItemHBox(order));
+                }
+            }
+        }
     }
 
 }

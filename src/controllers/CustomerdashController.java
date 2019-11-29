@@ -45,6 +45,12 @@ import scenes.ScenesHandler;
 public class CustomerdashController implements IInitWrapper, IDisplayUserError {
 
     @FXML
+    private Label username = new Label();
+    
+    @FXML
+    private Label usertype = new Label();
+    
+    @FXML
     private Label cartcount = new Label();
     
     @FXML
@@ -69,18 +75,29 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     
     public static StringProperty customerDashIntProp = new SimpleStringProperty();
     
+    private StringProperty uNameBinder = new SimpleStringProperty();
+    
+    private StringProperty uTypeBinder = new SimpleStringProperty();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initBindings();
+        activateListeners();
     }    
 
     @Override
     public void initBindings() {
+        uNameBinder.set(CacheHelper.getUsername());
+        
+        uTypeBinder.set(CacheHelper.getUserType().toString());
         cartcount.textProperty().bindBidirectional(customerDashIntProp);
-        activateListeners();
+        username.textProperty().bindBidirectional(uNameBinder);
+        
+        usertype.textProperty().bindBidirectional(uTypeBinder);
+        
     }
 
     @Override

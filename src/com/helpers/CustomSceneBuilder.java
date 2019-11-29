@@ -10,7 +10,13 @@ import com.models.Item;
 import com.models.Order;
 import controllers.AlertdialogController;
 import controllers.CustomerdashController;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -229,27 +235,61 @@ public class CustomSceneBuilder {
         
        HBox hb = new HBox();
        
-//       Region r = new Region();
-//       HBox.setHgrow(r, Priority.ALWAYS);
-//       
-//       Region r1 = new Region();
-//       HBox.setHgrow(r1, Priority.ALWAYS);
-//       
-//       Region r2 = new Region();
-//       HBox.setHgrow(r2, Priority.ALWAYS);
-//       
-//       hb.setMinHeight(HBox.USE_COMPUTED_SIZE);
-//       
-//       hb.getChildren().add(BuildLabel(item.getItemName()));
-//       hb.getChildren().add(r);
-//       hb.getChildren().add(BuildLabel("USD $"+item.getPrice()));
-//       hb.getChildren().add(r1);
-//       hb.getChildren().add(BuildLabel("x "+item.getQuantity()));
-//       hb.getChildren().add(r2);
-//       hb.getChildren().add(BuildLabel("USD $"+item.getTotalPrice()));
-//       
-//       hb.setSpacing(15);
-//       hb.setPadding(new Insets(10,10,10,10));
-       return hb;
+       String localUrl = "";
+       File file = new File(PathHelper.imageAbsPath+"icons8_time_machine_50px_1.png");
+ 
+        try {
+            localUrl = file.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img = new Image(localUrl,true);
+       
+        ImageView imv = new ImageView(img);
+        
+        imv.setFitHeight(45);
+        imv.setFitWidth(45);
+        
+        hb.getChildren().add(imv);
+       
+        VBox vb = new VBox();
+       
+        Label nameLabel = new Label(item.getUser().getFirstName()+" "+item.getUser().getLastName());
+       
+        nameLabel.setFont(Font.font("Arial Black"));
+        
+        nameLabel.setTextFill(Paint.valueOf("WHITE"));
+       
+        
+        vb.getChildren().add(nameLabel);
+       
+        HBox innerBox = new HBox();
+       
+        List<String> nameList = item.getItems().stream().map(Item::getName).collect(Collectors.toList());
+       
+        Label itemLabel = new Label(String.join("\n",nameList));
+        
+        itemLabel.setTextFill(Paint.valueOf("WHITE"));
+       
+        innerBox.getChildren().add(itemLabel);
+       
+        Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
+       
+        timeLabel.setAlignment(Pos.CENTER);
+        
+        timeLabel.setFont(Font.font("Candara"));
+       
+        timeLabel.setTextFill(Paint.valueOf("#dd0e0e"));
+        
+        //timeLabel.setTooltip("time");
+        
+        innerBox.getChildren().add(timeLabel);
+       
+        vb.getChildren().add(innerBox);
+       
+        hb.getChildren().add(vb);
+       
+        return hb;
     }
 }

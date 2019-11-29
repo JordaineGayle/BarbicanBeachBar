@@ -88,7 +88,7 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="497.0" prefWidth="222.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="500.0" prefWidth="221.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="60.0" prefWidth="225.0" text="Your Orders" textFill="#c9c3c3">
                <padding>
@@ -100,54 +100,7 @@
             </Label>
             <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="200.0" stylesheets="@css/customscroll.css">
                <content>
-                  <VBox spacing="10.0" style="-fx-background-color: #212121;">
-                     <children>
-                        <HBox>
-                           <children>
-                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons8_time_span_32px_3.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <VBox>
-                                 <children>
-                                    <Label text="Janet Jackson" textFill="#c9c3c3">
-                                       <font>
-                                          <Font name="Candara Bold" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="12.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                    <HBox>
-                                       <children>
-                                          <Label text="Bully Beef" textFill="#c9c3c3">
-                                             <padding>
-                                                <Insets left="12.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="12 mins" textFill="#dd0e0e">
-                                             <padding>
-                                                <Insets left="4.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Candara Bold" size="10.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <VBox spacing="10.0" style="-fx-background-color: #212121;" />
                </content>
             </ScrollPane>
          </children>
