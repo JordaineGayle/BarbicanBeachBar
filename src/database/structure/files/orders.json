@@ -1,0 +1,182 @@
+[
+  {
+    "orderId": 1,
+    "items": [
+      {
+        "itemId": 7,
+        "uniqueName": "YmFrZSBiZWFu",
+        "name": "Bake Bean",
+        "price": 761.36,
+        "preparationtTime": 23,
+        "quantity": 4,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:07:52 AM"
+      },
+      {
+        "itemId": 8,
+        "uniqueName": "YmFrZSBiZWFuIDQ\u003d",
+        "name": "bake bean 4",
+        "price": 36.0,
+        "preparationtTime": 33,
+        "quantity": 3,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:19:08 AM"
+      }
+    ],
+    "user": {
+      "Id": 1,
+      "FirstName": "Jordaine",
+      "LastName": "Gayle",
+      "EmailAddress": "jgayle@avantmark.com",
+      "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 21, 2019 12:29:43 AM"
+    },
+    "totalPrepTime": 56,
+    "totalPrice": 797.36,
+    "timeStamp": "Nov 29, 2019 3:59:05 AM"
+  },
+  {
+    "orderId": 2,
+    "items": [
+      {
+        "itemId": 9,
+        "uniqueName": "YWNrZWUgJiBzYWx0IGZpc2g\u003d",
+        "name": "ackee \u0026 salt fish",
+        "price": 444.0,
+        "preparationtTime": 33,
+        "quantity": 2,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:52:04 AM"
+      },
+      {
+        "itemId": 10,
+        "uniqueName": "YmFrZSBiZWFuIDQ1",
+        "name": "bake bean 45",
+        "price": 48.0,
+        "preparationtTime": 33,
+        "quantity": 4,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:19:17 AM"
+      }
+    ],
+    "user": {
+      "Id": 1,
+      "FirstName": "Jordaine",
+      "LastName": "Gayle",
+      "EmailAddress": "jgayle@avantmark.com",
+      "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 21, 2019 12:29:43 AM"
+    },
+    "totalPrepTime": 66,
+    "totalPrice": 492.0,
+    "timeStamp": "Nov 29, 2019 4:10:33 AM"
+  },
+  {
+    "orderId": 3,
+    "items": [
+      {
+        "itemId": 11,
+        "uniqueName": "Y3VycnkgY2hpY2tlbiAmIHJpY2U\u003d",
+        "name": "Curry Chicken \u0026 Rice",
+        "price": 1332.0,
+        "preparationtTime": 33,
+        "quantity": 6,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:52:25 AM"
+      }
+    ],
+    "user": {
+      "Id": 1,
+      "FirstName": "Jordaine",
+      "LastName": "Gayle",
+      "EmailAddress": "jgayle@avantmark.com",
+      "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 21, 2019 12:29:43 AM"
+    },
+    "totalPrepTime": 33,
+    "totalPrice": 1332.0,
+    "timeStamp": "Nov 29, 2019 4:13:40 AM"
+  },
+  {
+    "orderId": 4,
+    "items": [
+      {
+        "itemId": 12,
+        "uniqueName": "cHVtcGtpbiBzb3Vw",
+        "name": "Pumpkin Soup",
+        "price": 500.0,
+        "preparationtTime": 60,
+        "quantity": 4,
+        "imageUrl": "https://www.aafoodservice.com/wp-content/themes/custom-theme/img/slider-v1704.jpg",
+        "timeStamp": "Nov 28, 2019 5:20:55 PM"
+      },
+      {
+        "itemId": 13,
+        "uniqueName": "YmFrZSBiZWFu",
+        "name": "Bake Bean",
+        "price": 190.34,
+        "preparationtTime": 23,
+        "quantity": 1,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:07:52 AM"
+      }
+    ],
+    "user": {
+      "Id": 1,
+      "FirstName": "Jordaine",
+      "LastName": "Gayle",
+      "EmailAddress": "jgayle@avantmark.com",
+      "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 21, 2019 12:29:43 AM"
+    },
+    "totalPrepTime": 83,
+    "totalPrice": 690.34,
+    "timeStamp": "Nov 29, 2019 4:19:07 AM"
+  },
+  {
+    "orderId": 5,
+    "items": [
+      {
+        "itemId": 14,
+        "uniqueName": "YmFrZSBiZWFuIDQ\u003d",
+        "name": "bake bean 4",
+        "price": 36.0,
+        "preparationtTime": 33,
+        "quantity": 3,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:19:08 AM"
+      },
+      {
+        "itemId": 15,
+        "uniqueName": "YWNrZWUgJiBzYWx0IGZpc2g\u003d",
+        "name": "ackee \u0026 salt fish",
+        "price": 222.0,
+        "preparationtTime": 33,
+        "quantity": 1,
+        "imageUrl": "",
+        "timeStamp": "Nov 28, 2019 1:52:04 AM"
+      }
+    ],
+    "user": {
+      "Id": 1,
+      "FirstName": "Jordaine",
+      "LastName": "Gayle",
+      "EmailAddress": "jgayle@avantmark.com",
+      "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+      "PhoneNumber": "18765578447",
+      "UserType": "Customer",
+      "Timestamp": "Nov 21, 2019 12:29:43 AM"
+    },
+    "totalPrepTime": 66,
+    "totalPrice": 258.0,
+    "timeStamp": "Nov 29, 2019 4:21:02 AM"
+  }
+]

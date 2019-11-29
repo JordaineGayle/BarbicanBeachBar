@@ -9,11 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.interfaces.IDataManipulation;
+import com.models.Cart;
 import com.models.Item;
 import com.models.Order;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -28,6 +30,8 @@ public class OrdersHelper implements IDataManipulation<Order> {
     
     private final Gson json = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
     
+    public static ArrayList<Cart> cartItems = new ArrayList<Cart>();
+    
     @Override
     public boolean Add(Order obj) {
        
@@ -35,15 +39,19 @@ public class OrdersHelper implements IDataManipulation<Order> {
             return false;
         }
         
-        ArrayList<Order> orders = GetAll();
+        ArrayList<Order> items = GetAll();
+        
+        if(items == null){
+            items = new ArrayList<>();
+        }
         
         int currentId = GetCurrentId();
         
         obj.setOrderId(currentId+1);
         
-        orders.add(obj);
+        items.add(obj);
         
-        String data = toJson(orders);
+        String data = toJson(items);
         
         try {
             fp.write(data);
@@ -83,11 +91,23 @@ public class OrdersHelper implements IDataManipulation<Order> {
         
         int currentId = (int)id;
         
-        ArrayList<Order> orders = GetAll();
+        ArrayList<Order> items = GetAll();
         
-        boolean removed = orders.removeIf( e-> e.getOrderId()== currentId);
+        if(items == null){
+            items = new ArrayList<>();
+        }
         
-        return removed;
+        boolean removed = items.removeIf( e-> e.getOrderId() == currentId);
+        
+        String data = toJson(items);
+        
+        try {
+            fp.write(data);
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
         
     }
 
@@ -147,11 +167,15 @@ public class OrdersHelper implements IDataManipulation<Order> {
     @Override
     public Order GetSingle(Object id) {
         
-        ArrayList<Order> orders = GetAll();
+        ArrayList<Order> items = GetAll();
+        
+        if(items == null){
+            items = new ArrayList<>();
+        }
         
         int currentId = (int)id;
         
-        Stream<Order> i = orders.stream().filter(e->e.getOrderId() == currentId);
+        Stream<Order> i = items.stream().filter(e->e.getOrderId() == currentId);
         
         return i.findFirst().get();
     }
@@ -167,9 +191,9 @@ public class OrdersHelper implements IDataManipulation<Order> {
             
         }catch(Exception e){
             e.printStackTrace();
-            
-            return new ArrayList<Order>(){};
         }
+        
+        return new ArrayList<Order>(){};
         
     }
 
@@ -217,7 +241,19 @@ public class OrdersHelper implements IDataManipulation<Order> {
     @Override
     public int GetCurrentId()
     {
-        return GetAll().size();
+        ArrayList<Order> items = GetAll();
+        
+        if(items != null){
+            
+            Collections.sort(items);
+            
+            return items.get(items.size()-1).getOrderId();
+        }
+        
+        return 0;
+        
     }
     
+    
 }
+

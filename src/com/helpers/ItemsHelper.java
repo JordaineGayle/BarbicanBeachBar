@@ -99,7 +99,15 @@ public class ItemsHelper implements IDataManipulation<Item> {
         
         boolean removed = items.removeIf( e-> e.getItemId() == currentId);
         
-        return removed;
+        String data = toJson(items);
+        
+        try {
+            fp.write(data);
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
         
     }
 

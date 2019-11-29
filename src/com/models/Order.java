@@ -7,12 +7,13 @@ package com.models;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
  * @author jorda
  */
-public class Order {
+public class Order implements Comparable<Order> {
     
     private int orderId;
 
@@ -21,6 +22,8 @@ public class Order {
     private User user;
 
     private int totalPrepTime;
+    
+    private double totalPrice;
 
     private Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
 
@@ -34,10 +37,12 @@ public class Order {
         user  = new User();
 
         totalPrepTime = 0;
+        
+        totalPrice = 0;
 
     }
 
-    public Order(int orderId, ArrayList<Item> items, User user, int prepTime){
+    public Order(int orderId, ArrayList<Item> items, User user, int prepTime, double totalPrice){
         
         this.orderId = orderId;
 
@@ -46,6 +51,8 @@ public class Order {
         this.user = user;
 
         this.totalPrepTime = prepTime;
+        
+        this.totalPrice = totalPrice;
     }
 
     public void setOrderId(int orderId){
@@ -63,6 +70,10 @@ public class Order {
     public void setTotalPrepTime(int prepTime){
         this.totalPrepTime = prepTime;
     }
+    
+    public void setTotalPrice(double tPrice){
+        this.totalPrice = tPrice;
+    }
 
     public int getOrderId(){
         return this.orderId;
@@ -79,9 +90,35 @@ public class Order {
     public int getPrepTime(){
         return this.totalPrepTime;
     }
+    
+    public double getTotalPrice(){
+        return this.totalPrice;
+    }
 
     public Timestamp getTimeStamp(){
         return this.timeStamp;
+    }
+    
+    @Override
+    public int compareTo(Order o) {
+
+        return this.getOrderId() - o.getOrderId();
+            
+    }
+    
+
+    // Two employees are equal if their IDs are equal
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return orderId == order.getOrderId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId);
     }
 
 }

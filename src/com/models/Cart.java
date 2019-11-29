@@ -61,15 +61,15 @@ public class Cart {
         itemName = iName;
     }
     
-    public void setQuantityId(int qid){
+    public void setQuantity(int qid){
         quantity = qid;
     }
     
-    public void setPriceId(double pr){
+    public void setPrice(double pr){
         price = pr;
     }
     
-    public void setTotalPriceId(double tpr){
+    public void setTotalPrice(double tpr){
         totalPrice = tpr;
     }
     

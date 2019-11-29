@@ -58,6 +58,8 @@ public class RuntimeHelper {
     
     public static void loadItemsInCart(Parent p){
         
+        int counter = 0;
+        
         ItemsHelper ih = new ItemsHelper();
         
         ArrayList<Cart> items = ih.cartItems;
@@ -69,28 +71,32 @@ public class RuntimeHelper {
             System.out.println(node);
             
             ScrollPane sp = (ScrollPane)node.get(1);
+            
+            VBox vb = (VBox)sp.getContent();
 
-            node = sp.getContent();
+            //node = vb.getChildren();
             
             System.out.println(node);
-            
-            HBox hb = (HBox)node.get(0);
 
-            node = hb.getChildren();
-            
-            System.out.println(node);
-//
-//            ScrollPane sp = (ScrollPane) node.get(1);
-//
-//            VBox tp = (VBox) sp.getContent();
-//            
-//            for(Cart item : items){
-//
-//                System.out.println(item.getItemName());
-//                
-//                //tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
-//
-//            }
+            for(Cart item : items){
+
+                //item.setTotalPrice(0);
+                
+                HBox hb = CustomSceneBuilder.BuildCartItemHBox(item);
+                
+                if(counter%2 == 0){
+                    hb.setStyle("-fx-background-color: rgba(100,100,100,0.5);");
+                    vb.getChildren().add(hb);
+                }else{
+                    hb.setStyle("-fx-background-color: rgba(150,150,150,1);");
+                    vb.getChildren().add(hb);
+                }
+                
+                
+                
+                counter++;
+
+            }
         }
     }
     

@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,8 +24,13 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import scenes.ScenesHandler;
@@ -71,7 +77,7 @@ public class CustomSceneBuilder {
         
         vb.getChildren().add(new Label("Prepartion Time: "+String.valueOf(item.getPrepTime())+" min"));
         
-        vb.getChildren().add(new Label("Price: USD $"+String.valueOf(item.getPrepTime())));
+        vb.getChildren().add(new Label("Price: USD $"+String.valueOf(item.getPrice())));
         
         TextField tf = new TextField();
         
@@ -126,7 +132,9 @@ public class CustomSceneBuilder {
                     
                     if(yourQuantity < inStock){
                         
-                        obtainedCart.setQuantityId(yourQuantity += obtainedCart.getQuantity());
+                        obtainedCart.setQuantity(yourQuantity += obtainedCart.getQuantity());
+                        
+                        obtainedCart.setTotalPrice( obtainedCart.getQuantity()*item.getPrice() );
                         
                         ItemsHelper.cartItems.add(obtainedCart);
                         
@@ -147,6 +155,34 @@ public class CustomSceneBuilder {
         
         vb.getChildren().add(btn);
         return vb;
+    }
+    
+    public static HBox BuildCartItemHBox(Cart item){
+        
+       HBox hb = new HBox();
+       
+       Region r = new Region();
+       HBox.setHgrow(r, Priority.ALWAYS);
+       
+       Region r1 = new Region();
+       HBox.setHgrow(r1, Priority.ALWAYS);
+       
+       Region r2 = new Region();
+       HBox.setHgrow(r2, Priority.ALWAYS);
+       
+       hb.setMinHeight(HBox.USE_COMPUTED_SIZE);
+       
+       hb.getChildren().add(BuildLabel(item.getItemName()));
+       hb.getChildren().add(r);
+       hb.getChildren().add(BuildLabel("USD $"+item.getPrice()));
+       hb.getChildren().add(r1);
+       hb.getChildren().add(BuildLabel("x "+item.getQuantity()));
+       hb.getChildren().add(r2);
+       hb.getChildren().add(BuildLabel("USD $"+item.getTotalPrice()));
+       
+       hb.setSpacing(15);
+       hb.setPadding(new Insets(10,10,10,10));
+       return hb;
     }
     
     public  static AnchorPane BuildAnchorPane(){
@@ -172,4 +208,19 @@ public class CustomSceneBuilder {
         return ds;
     }
     
+    public static Label BuildLabel(Object str){
+        
+        Label l = new Label(String.valueOf(str).toUpperCase());
+        
+        l.setFont(Font.font("Arial", 11));
+        
+        l.setTextFill(Paint.valueOf("WHITE"));
+        
+        l.setAlignment(Pos.CENTER_LEFT);
+        
+        l.setMinWidth(228);
+        
+        return l;
+        
+    }
 }

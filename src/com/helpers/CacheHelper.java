@@ -17,14 +17,22 @@ public class CacheHelper {
     
     private static UserType UType;
     
+    private static String Useremail;
+    
     public CacheHelper(){
         Username= "";
         
         UType = UserType.Guest;
+        
+        Useremail = "";
     }
     
     public static String getUsername(){
         return Username;
+    }
+    
+    public static String getUseremail(){
+        return Useremail;
     }
     
     public static UserType getUserType(){
@@ -33,6 +41,10 @@ public class CacheHelper {
     
     public static void setUsername(String name){
         Username = name;
+    }
+    
+    public static void setUseremail(String email){
+        Useremail = email;
     }
     
     public static void setUsertype(UserType utype){

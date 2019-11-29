@@ -122,6 +122,8 @@ public class UserHelper {
              CacheHelper.setUsername(user.getFirstName()+" "+user.getLastName());
 
              CacheHelper.setUsertype(user.getUserType());
+             
+             CacheHelper.setUseremail(user.getEmailAddress());
 
              return true;
          }

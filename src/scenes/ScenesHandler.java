@@ -187,7 +187,7 @@ public class ScenesHandler {
             
             FXMLLoader fxmlLoader;
             
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/cartview.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/cart.fxml"));
             
             Parent root = (Parent) fxmlLoader.load();
             
@@ -197,7 +197,9 @@ public class ScenesHandler {
             
             s.setScene(new Scene(root));
             
-            s.setResizable(false);
+            //s.setResizable(false);
+            
+            s.setMaximized(true);
 
             s.sizeToScene();
             
