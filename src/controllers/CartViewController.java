@@ -14,7 +14,9 @@ import com.models.Item;
 import com.models.Order;
 import com.models.User;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -130,6 +132,19 @@ public class CartViewController implements Initializable {
             
             UserHelper uh = new UserHelper();
             
+            int leftLimit = 97; // letter 'a'
+            int rightLimit = 122; // letter 'z'
+            int targetStringLength = 10;
+            Random random = new Random();
+            StringBuilder buffer = new StringBuilder(targetStringLength);
+            for (int i = 0; i < targetStringLength; i++) {
+                int randomLimitedInt = leftLimit + (int) 
+                  (random.nextFloat() * (rightLimit - leftLimit + 1));
+                buffer.append((char) randomLimitedInt);
+            }
+            
+            String onum = buffer.toString();
+            
             Order order = new Order();
             
             User user = uh.getUserByEmail(CacheHelper.getUseremail());
@@ -142,6 +157,8 @@ public class CartViewController implements Initializable {
             
             order.setTotalPrice(grandTotal);
             
+            order.setOrderNumber(onum);
+            
             if(oh.Add(order)){
                 
                 ih.cartItems.clear();
@@ -153,7 +170,9 @@ public class CartViewController implements Initializable {
                 }
                 
                 ScenesHandler.AlertStage(new Stage());
-                AlertdialogController.showError("Your order has been processed. You will receive an email shortly.");
+                
+                AlertdialogController.showError("Your order has been processed. You will receive an email shortly.\n"
+                        + "Your Order#: "+onum);
                 
             }else{
                 ScenesHandler.AlertStage(new Stage());

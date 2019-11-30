@@ -8,13 +8,20 @@ package scenes;
 import barbicanbeachbaroopproject2019.Main;
 import com.enums.Enums;
 import com.helpers.CacheHelper;
+import com.helpers.CustomSceneBuilder;
+import com.helpers.PathHelper;
 import com.helpers.RuntimeHelper;
 import controllers.RegisterController;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -48,6 +55,9 @@ public class ScenesHandler {
 
             Scene scene = new Scene(root);
 
+            s.setTitle("Homepage");
+            setIcon(s);
+            
             s.setScene(scene);
 
             s.setResizable(false);
@@ -70,7 +80,13 @@ public class ScenesHandler {
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/dashboard.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             
+            
+            setIcon(s);
             s.setScene(new Scene(root));  
+            s.setTitle("Administrator Dashboard");
+            s.setMaximized(true);
+            
+            s.hide();
             
             s.show();
             
@@ -95,7 +111,8 @@ public class ScenesHandler {
             Parent root = (Parent) fxmlLoader.load();
             
             s.setScene(new Scene(root));  
-            
+            s.setTitle("Customer Dashboard");
+            setIcon(s);
             s.setMaximized(true);
             
             s.hide();
@@ -124,6 +141,7 @@ public class ScenesHandler {
             //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
+            setIcon(s);
             s.initModality(Modality.APPLICATION_MODAL);
             
             s.setTitle("Register");
@@ -162,6 +180,8 @@ public class ScenesHandler {
             //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
+            setIcon(s);
+            
             s.initModality(Modality.APPLICATION_MODAL);
             
             s.setTitle("Add Items");
@@ -195,11 +215,14 @@ public class ScenesHandler {
     public static void EditItemStage(Stage s){
         try {
             FXMLLoader fxmlLoader;
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/additem.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/edititem.fxml"));
             //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
+            setIcon(s);
+            
             s.initModality(Modality.APPLICATION_MODAL);
+            
             
             s.setTitle("Edit Item");
             
@@ -236,6 +259,8 @@ public class ScenesHandler {
             //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
+            setIcon(s);
+            
             s.initModality(Modality.APPLICATION_MODAL);
             
             s.setTitle("Warning !");
@@ -264,6 +289,8 @@ public class ScenesHandler {
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/cart.fxml"));
             
             Parent root = (Parent) fxmlLoader.load();
+            
+            setIcon(s);
             
             s.initModality(Modality.APPLICATION_MODAL);
             
@@ -327,6 +354,21 @@ public class ScenesHandler {
     
     public static Stage getCartStage(){
         return cart_stage;
+    }
+    
+    private static void setIcon(Stage s){
+        String localUrl2 = "";
+        File file1 = new File(PathHelper.imageAbsPath+"icons8_blockchain_new_logo_48px.png");
+ 
+        try {
+            localUrl2 = file1.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            
+        }
+        
+        Image img2 = new Image(localUrl2);
+        
+        s.getIcons().add(img2);
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import com.helpers.CacheHelper;
 import com.helpers.GeneralHelper;
 import com.helpers.ItemsHelper;
 import com.interfaces.IDisplayUserError;
@@ -63,6 +64,12 @@ public class EdititemController implements IInitWrapper, IDisplayUserError {
     public void initialize(URL location, ResourceBundle resources) {
         initBindings();
         activateListeners();
+        Item i = CacheHelper.getItem();
+        itemname.setText(i.getName());
+        imageurl.setText(i.getImageUrl());
+        preptime.setText(String.valueOf(i.getPrepTime()) );
+        price.setText(String.valueOf(i.getPrice()) );
+        quantity.setText(String.valueOf(i.getQuantity()) );
     }
     
     @Override
@@ -99,7 +106,7 @@ public class EdititemController implements IInitWrapper, IDisplayUserError {
         if(validated){
             ItemsHelper ihelper = new ItemsHelper();
             
-            Item item = new Item(0, itemname.getText(),imageurl.getText(),Double.parseDouble(price.getText()), Integer.parseInt(preptime.getText()), Integer.parseInt(quantity.getText()));
+            Item item = new Item(CacheHelper.getItem().getItemId(), itemname.getText(),imageurl.getText(),Double.parseDouble(price.getText()), Integer.parseInt(preptime.getText()), Integer.parseInt(quantity.getText()));
             
             boolean edited = ihelper.Edit(item);
             
@@ -150,7 +157,7 @@ public class EdititemController implements IInitWrapper, IDisplayUserError {
             return false;
         }
         
-        if(checkItemValidity(itemname.getText())){
+        if(!checkItemValidity(itemname.getText())){
             return false;
         }
         
@@ -167,12 +174,12 @@ public class EdititemController implements IInitWrapper, IDisplayUserError {
             
             long totalMatch = items.stream().filter((w)-> w.getUniqueName().equals(GeneralHelper.EncodeString(str.toLowerCase()))).count();
             //System.out.println(totalMatch);
-            if(totalMatch > 0){
-                setError("item name already exist.");
-                return true;
+            if(totalMatch <= 0){
+                setError("couldn't find item.");
+                return false;
             }else{
                 setDefault();
-                return false;
+                return true;
             }
         }
         

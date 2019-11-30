@@ -28,6 +28,8 @@ public class Order implements Comparable<Order> {
     private double totalPrice;
     
     private Status orderStatus;
+    
+    private String orderNumber;
 
     private Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
 
@@ -45,10 +47,12 @@ public class Order implements Comparable<Order> {
         totalPrice = 0;
         
         orderStatus = Enums.Status.InProgress;
+        
+        orderNumber = "";
 
     }
 
-    public Order(int orderId, ArrayList<Item> items, User user, int prepTime, double totalPrice){
+    public Order(int orderId, ArrayList<Item> items, User user, int prepTime, double totalPrice, String onum){
         
         this.orderId = orderId;
 
@@ -61,6 +65,8 @@ public class Order implements Comparable<Order> {
         this.totalPrice = totalPrice;
         
         orderStatus = Enums.Status.InProgress;
+        
+        orderNumber = onum;
     }
 
     public void setOrderId(int orderId){
@@ -70,7 +76,11 @@ public class Order implements Comparable<Order> {
     public void setOrderStatus(Status status){
         this.orderStatus = status;
     }
-
+    
+    public void setOrderNumber(String onum){
+        this.orderNumber = onum;
+    }
+    
     public void setItems(ArrayList<Item> items){
         this.items = items;
     }
@@ -97,6 +107,10 @@ public class Order implements Comparable<Order> {
 
     public User getUser(){
         return this.user;
+    }
+    
+    public String getOrderNumber(){
+        return this.orderNumber;
     }
 
     public int getPrepTime(){

@@ -240,35 +240,28 @@ public class CustomSceneBuilder {
         
        HBox hb = new HBox();
        
-       String localUrl = "";
-       File file = new File(PathHelper.imageAbsPath+"icons8_time_machine_50px_1.png");
- 
-        try {
-            localUrl = file.toURI().toURL().toString();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Image img = new Image(localUrl,true);
-       
-        ImageView imv = new ImageView(img);
-        
-        imv.setFitHeight(45);
-        imv.setFitWidth(45);
-        
-        hb.getChildren().add(imv);
        
         VBox vb = new VBox();
-   
-        
+    
         Label statusLabel = new Label("Status: "+item.getOrderStatus().name());
        
         statusLabel.setFont(Font.font("Arial Black"));
         
         statusLabel.setTextFill(Paint.valueOf("WHITE"));
-       
         
+        statusLabel.setPadding(new Insets(10,0,0,10));
+       
         vb.getChildren().add(statusLabel);
+        
+        Label orderLabel = new Label("Order#: "+item.getOrderNumber());
+       
+        orderLabel.setFont(Font.font("Arial"));
+        
+        orderLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        orderLabel.setPadding(new Insets(10,0,0,10));
+       
+        vb.getChildren().add(orderLabel);
        
         HBox innerBox = new HBox();
        
@@ -277,10 +270,14 @@ public class CustomSceneBuilder {
         Label itemLabel = new Label(String.join("\n",nameList));
         
         itemLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        itemLabel.setPadding(new Insets(10,0,0,10));
        
         innerBox.getChildren().add(itemLabel);
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
+        
+        timeLabel.setPadding(new Insets(10,0,0,10));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
@@ -310,24 +307,6 @@ public class CustomSceneBuilder {
         
        HBox hb = new HBox();
        
-       String localUrl = "";
-       File file = new File(PathHelper.imageAbsPath+"icons8_time_machine_50px_1.png");
- 
-        try {
-            localUrl = file.toURI().toURL().toString();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Image img = new Image(localUrl,true);
-       
-        ImageView imv = new ImageView(img);
-        
-        imv.setFitHeight(45);
-        imv.setFitWidth(45);
-        
-        hb.getChildren().add(imv);
-       
         VBox vb = new VBox();
        
         Label nameLabel = new Label("User: "+item.getUser().getFirstName()+" "+item.getUser().getLastName());
@@ -335,18 +314,22 @@ public class CustomSceneBuilder {
         nameLabel.setFont(Font.font("Arial Black"));
         
         nameLabel.setTextFill(Paint.valueOf("WHITE"));
-       
+        
+        nameLabel.setPadding(new Insets(10,0,0,10));
         
         vb.getChildren().add(nameLabel);
         
+      
         Label statusLabel = new Label("Status: "+item.getOrderStatus().name());
        
         statusLabel.setFont(Font.font("Arial Black"));
         
         statusLabel.setTextFill(Paint.valueOf("WHITE"));
-       
         
+        statusLabel.setPadding(new Insets(10,0,0,10));
+       
         vb.getChildren().add(statusLabel);
+       
        
         HBox innerBox = new HBox();
        
@@ -355,10 +338,14 @@ public class CustomSceneBuilder {
         Label itemLabel = new Label(String.join("\n",nameList));
         
         itemLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        itemLabel.setPadding(new Insets(10,0,0,10));
        
         innerBox.getChildren().add(itemLabel);
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
+        
+        timeLabel.setPadding(new Insets(10,0,0,10));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
@@ -465,6 +452,9 @@ public class CustomSceneBuilder {
         edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                
+                CacheHelper.setItem(item);
+                
                 ScenesHandler.EditItemStage(new Stage());
             }
         });

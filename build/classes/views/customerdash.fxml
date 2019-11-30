@@ -31,23 +31,23 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <AnchorPane prefHeight="82.0" prefWidth="252.0">
+            <AnchorPane prefHeight="82.0" prefWidth="298.0">
                <children>
-                  <ImageView fx:id="logout" fitHeight="31.0" fitWidth="26.0" layoutX="54.0" layoutY="28.0" onMouseClicked="#signOff" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logout" fitHeight="31.0" fitWidth="26.0" layoutX="107.0" layoutY="28.0" onMouseClicked="#signOff" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_logout_rounded_down_32px.png" />
+                        <Image url="@../images/icons8_logout_rounded_down_32px_1.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Line endX="-100.0" endY="39.0" layoutX="188.0" layoutY="21.0" startX="-100.0" stroke="#d0cfcf" />
-                  <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="96.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                  <Line endX="-100.0" endY="39.0" layoutX="241.0" layoutY="21.0" startX="-100.0" stroke="#d0cfcf" />
+                  <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="149.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_user_male_circle_32px.png" />
+                        <Image url="@../images/icons8_user_male_circle_32px_1_1.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="usertype" layoutX="130.0" layoutY="46.0" text="Customer" textFill="#c9c3c3">
+                  <Label fx:id="usertype" layoutX="183.0" layoutY="46.0" text="Customer" textFill="WHITE">
                      <font>
                         <Font name="Candara Italic" size="11.0" />
                      </font>
@@ -55,7 +55,7 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="username" layoutX="130.0" layoutY="24.0" text="Jordaine Gayle" textFill="#c9c3c3">
+                  <Label fx:id="username" layoutX="183.0" layoutY="24.0" text="Jordaine Gayle" textFill="WHITE">
                      <font>
                         <Font name="Candara Bold" size="14.0" />
                      </font>
@@ -63,15 +63,15 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </Label>
-                  <ImageView fx:id="viewcartitems" accessibleRole="BUTTON" fitHeight="31.0" fitWidth="26.0" layoutX="19.0" layoutY="28.0" onMouseClicked="#viewcart" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="viewcartitems" accessibleRole="BUTTON" fitHeight="31.0" fitWidth="26.0" layoutX="71.0" layoutY="28.0" onMouseClicked="#viewcart" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_shopping_cart_32px.png" />
+                        <Image url="@../images/icons8_shopping_cart_32px_3.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="cartcount" alignment="CENTER" layoutX="32.0" layoutY="25.0" prefHeight="16.0" prefWidth="17.0" textFill="RED">
+                  <Label fx:id="cartcount" alignment="CENTER" layoutX="89.0" layoutY="20.0" prefHeight="16.0" prefWidth="17.0" textFill="RED">
                      <font>
                         <Font name="Candara Bold" size="12.0" />
                      </font>

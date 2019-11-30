@@ -44,7 +44,7 @@
             <Font name="Candara Italic" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="49.0" prefWidth="396.0" style="-fx-background-color: #212121;" text="Label" textFill="WHITE">
+      <Label alignment="CENTER" prefHeight="49.0" prefWidth="396.0" style="-fx-background-color: #212121;" text="Edit Item" textFill="WHITE">
          <font>
             <Font name="Candara Bold" size="21.0" />
          </font>
