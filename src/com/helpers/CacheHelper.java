@@ -10,7 +10,9 @@ import com.models.Item;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
+ * 
+ * This class was build to handle static variables that is used through the program
  */
 public class CacheHelper {
     

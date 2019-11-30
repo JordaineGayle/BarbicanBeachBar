@@ -7,7 +7,7 @@ package com.models;
 
 /**
  *
- * @author jgayle
+ * @author Jay
  */
 public class Cart {
     

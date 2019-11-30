@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public class ItemsHelper implements IDataManipulation<Item> {
 

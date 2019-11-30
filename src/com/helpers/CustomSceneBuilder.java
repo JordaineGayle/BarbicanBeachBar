@@ -5,6 +5,8 @@
  */
 package com.helpers;
 
+import com.enums.Enums;
+import com.enums.Enums.Status;
 import com.models.Cart;
 import com.models.Item;
 import com.models.Order;
@@ -49,7 +51,9 @@ import scenes.ScenesHandler;
 
 /**
  *
- * @author jgayle
+ * @author Jordaine Gayle
+ * 
+ * This class was built to load dynamic data onto the view
  */
 public class CustomSceneBuilder {
     
@@ -343,9 +347,11 @@ public class CustomSceneBuilder {
        
         hb.getChildren().add(vb);
         
-        TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty());
+        if(item.getOrderStatus() == Status.InProgress){
+            TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty(),item.getOrderId());
         
-        tm.createThreads();
+            tm.createThreads();
+        }
        
         return hb;
     }
@@ -463,9 +469,11 @@ public class CustomSceneBuilder {
         
         hb.getChildren().add(vb);
         
-        TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty());
+        if(item.getOrderStatus() == Status.InProgress){
+            TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty(),item.getOrderId());
         
-        tm.createThreads();
+            tm.createThreads();
+        }
         
        
         return hb;

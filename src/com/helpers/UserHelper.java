@@ -18,7 +18,9 @@ import java.util.Iterator;
 
 /**
  *
- * @author jorda
+ * @author Jordaine
+ * 
+ * This was suppose to have the same layout and structure like items and orders but time was against me
  */
 public class UserHelper {
     

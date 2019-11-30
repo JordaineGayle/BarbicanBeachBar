@@ -34,7 +34,7 @@ import javafx.stage.WindowEvent;
 
 /**
  *
- * @author jgayle
+ * @author Jordaine Gayle
  */
 public class ScenesHandler {
     

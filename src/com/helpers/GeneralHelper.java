@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author jorda
+ * @author //Amoy Scarlett
  */
 public class GeneralHelper {
     

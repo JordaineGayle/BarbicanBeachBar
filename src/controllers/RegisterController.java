@@ -32,7 +32,7 @@ import javafx.scene.control.TextInputControl;
 
 /**
  *
- * @author jorda
+ * @author JGayle
  */
 public class RegisterController implements IInitWrapper, IDisplayUserError {
 

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author jorda
+ * @author //Amoy Scarlett
  */
 public class FileHelper {
     

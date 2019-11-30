@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author jgayle
+ * @author //Amoy Scarlett
  */
 public class PathHelper {
     

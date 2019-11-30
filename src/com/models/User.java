@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author jorda
+ * @author Jay
  */
 public class User {
     

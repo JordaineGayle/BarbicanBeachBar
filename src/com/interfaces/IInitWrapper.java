@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public interface IInitWrapper extends Initializable{
     

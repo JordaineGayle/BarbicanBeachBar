@@ -7,7 +7,7 @@ package com.interfaces;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public interface IDisplayUserError {
     

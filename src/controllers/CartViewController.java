@@ -6,6 +6,7 @@
 package controllers;
 
 import com.helpers.CacheHelper;
+import com.helpers.EmailHelper;
 import com.helpers.ItemsHelper;
 import com.helpers.OrdersHelper;
 import com.helpers.UserHelper;
@@ -16,8 +17,10 @@ import com.models.User;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -168,6 +171,21 @@ public class CartViewController implements Initializable {
                 }else{
                     CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
                 }
+                
+                String subject = "Order Detials: Thank you for doing business with.";
+                               
+                String to = order.getUser().getEmailAddress();
+                
+                List<String> nameList = order.getItems().stream().map(Item::getName).collect(Collectors.toList());
+                
+                String msg = "<div>"
+                + "<b>Order#:</b>"+order.getOrderNumber()+
+                "<br/><b>TotalPrice:</b> USD $"+order.getTotalPrice()+
+                "<br/><b>Total Prepartion Time:</b> "+order.getPrepTime()+" min"+
+                "<br/><b>Items: </b>"+String.join("<br/>",nameList)
+                + "</div>";
+
+                new EmailHelper(to,subject,msg);
                 
                 ScenesHandler.AlertStage(new Stage());
                 

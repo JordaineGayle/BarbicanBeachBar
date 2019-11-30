@@ -33,7 +33,7 @@ import scenes.ScenesHandler;
 
 /**
  *
- * @author jgayle
+ * @author Jordaine Gayle
  */
 public class RuntimeHelper {
     

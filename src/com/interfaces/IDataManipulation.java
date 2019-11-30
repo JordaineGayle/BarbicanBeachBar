@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public interface IDataManipulation<T> {
     

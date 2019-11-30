@@ -12,7 +12,7 @@ import java.util.Objects;
 
 /**
  *
- * @author jorda
+ * @author Jay
  */
 public class Item implements Comparable<Item> {
     

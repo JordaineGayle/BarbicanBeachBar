@@ -7,16 +7,18 @@ package com.enums;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public class Enums {
     
+    //Enum for the user types
     public enum UserType{
         Admin, 
         Customer,
         Guest
     }
     
+    //enum for the order status
     public enum Status{
         InProgress,
         Completed,

@@ -26,7 +26,7 @@ import javafx.scene.control.TextInputControl;
 /**
  * FXML Controller class
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public class EdititemController implements IInitWrapper, IDisplayUserError {
 

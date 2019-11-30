@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public class OrdersHelper implements IDataManipulation<Order> {
 
@@ -271,9 +271,15 @@ public class OrdersHelper implements IDataManipulation<Order> {
         
         if(items != null){
             
-            Collections.sort(items);
+            if(items.size() <= 0){
+                return 0;
+            }else{
+                Collections.sort(items);
             
-            return items.get(items.size()-1).getOrderId();
+                return items.get(items.size()-1).getOrderId();
+            }
+            
+            
         }
         
         return 0;

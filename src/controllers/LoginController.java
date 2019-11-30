@@ -32,7 +32,7 @@ import jdk.nashorn.internal.parser.TokenType;
 
 /**
  *
- * @author jorda
+ * @author Jordaine Gayle
  */
 public class LoginController implements IInitWrapper,IDisplayUserError {
 
