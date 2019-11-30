@@ -40,8 +40,7 @@ public class TimeHelper {
     private int orderId;
     
     private OrdersHelper oh = new OrdersHelper();
-    
-    
+   
     public TimeHelper(int orderTime1, StringProperty sp, int orderId1){
         orderTime = orderTime1;
         orderId=orderId1;

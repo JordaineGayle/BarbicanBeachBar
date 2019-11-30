@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Jay
+ * @author Jarseno Samuels
  */
 public class Order implements Comparable<Order> {
     
