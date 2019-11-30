@@ -24,8 +24,10 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
@@ -242,6 +244,8 @@ public class CustomSceneBuilder {
        
        
         VBox vb = new VBox();
+        
+        vb.setPadding(new Insets(10,10,10,10));
     
         Label statusLabel = new Label("Status: "+item.getOrderStatus().name());
        
@@ -249,7 +253,7 @@ public class CustomSceneBuilder {
         
         statusLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        statusLabel.setPadding(new Insets(10,0,0,10));
+        statusLabel.setPadding(new Insets(10,0,0,0));
        
         vb.getChildren().add(statusLabel);
         
@@ -259,7 +263,7 @@ public class CustomSceneBuilder {
         
         orderLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        orderLabel.setPadding(new Insets(10,0,0,10));
+        orderLabel.setPadding(new Insets(10,0,0,0));
        
         vb.getChildren().add(orderLabel);
        
@@ -271,13 +275,13 @@ public class CustomSceneBuilder {
         
         itemLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        itemLabel.setPadding(new Insets(10,0,0,10));
+        itemLabel.setPadding(new Insets(10,0,0,0));
        
         innerBox.getChildren().add(itemLabel);
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
         
-        timeLabel.setPadding(new Insets(10,0,0,10));
+        timeLabel.setPadding(new Insets(10,0,0,0));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
@@ -290,6 +294,52 @@ public class CustomSceneBuilder {
         innerBox.getChildren().add(timeLabel);
        
         vb.getChildren().add(innerBox);
+        
+        String localUrl2 = "";
+        File file1 = new File(PathHelper.imageAbsPath+"icons8_delete_32px.png");
+ 
+        try {
+            localUrl2 = file1.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img2 = new Image(localUrl2,true);
+        
+        ImageView imv2 = new ImageView(img2);
+        
+        imv2.setFitWidth(20);
+        imv2.setFitHeight(20);
+        
+        Button delete = new Button();
+        delete.setGraphic(imv2);
+        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+        delete.setTextFill(Paint.valueOf("WHITE"));
+        delete.setStyle("-fx-background-color: #b71c1c;");
+        //delete.setPrefWidth(88);
+        //delete.setPrefHeight(25);
+        
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+                OrdersHelper oh = new OrdersHelper();
+                
+                if(oh.Delete(item.getOrderId())){
+                    
+                    ScenesHandler.AlertStage(new Stage());
+                    
+                    AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+                }
+            
+            }
+        });
+       
+        delete.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        
+        delete.setCursor(Cursor.HAND);
+        
+        vb.getChildren().add(delete);
        
         hb.getChildren().add(vb);
        
@@ -308,6 +358,8 @@ public class CustomSceneBuilder {
        HBox hb = new HBox();
        
         VBox vb = new VBox();
+        
+        vb.setPadding(new Insets(10,10,10,10));
        
         Label nameLabel = new Label("User: "+item.getUser().getFirstName()+" "+item.getUser().getLastName());
        
@@ -315,7 +367,7 @@ public class CustomSceneBuilder {
         
         nameLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        nameLabel.setPadding(new Insets(10,0,0,10));
+        //nameLabel.setPadding(new Insets(10,0,0,10));
         
         vb.getChildren().add(nameLabel);
         
@@ -326,7 +378,7 @@ public class CustomSceneBuilder {
         
         statusLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        statusLabel.setPadding(new Insets(10,0,0,10));
+        statusLabel.setPadding(new Insets(10,0,0,0));
        
         vb.getChildren().add(statusLabel);
        
@@ -339,13 +391,13 @@ public class CustomSceneBuilder {
         
         itemLabel.setTextFill(Paint.valueOf("WHITE"));
         
-        itemLabel.setPadding(new Insets(10,0,0,10));
+        itemLabel.setPadding(new Insets(10,0,0,0));
        
         innerBox.getChildren().add(itemLabel);
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
         
-        timeLabel.setPadding(new Insets(10,0,0,10));
+        timeLabel.setPadding(new Insets(10,0,0,0));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
@@ -358,8 +410,55 @@ public class CustomSceneBuilder {
         innerBox.getChildren().add(timeLabel);
        
         vb.getChildren().add(innerBox);
+        
+        String localUrl2 = "";
+        File file1 = new File(PathHelper.imageAbsPath+"icons8_delete_32px.png");
+ 
+        try {
+            localUrl2 = file1.toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image img2 = new Image(localUrl2,true);
+        
+        ImageView imv2 = new ImageView(img2);
+        
+        imv2.setFitWidth(20);
+        imv2.setFitHeight(20);
+        
+        Button delete = new Button();
+        delete.setGraphic(imv2);
+        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+        delete.setTextFill(Paint.valueOf("WHITE"));
+        delete.setStyle("-fx-background-color: #b71c1c;");
+        //delete.setPrefWidth(88);
+        //delete.setPrefHeight(25);
+        
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+                OrdersHelper oh = new OrdersHelper();
+                
+                if(oh.Delete(item.getOrderId())){
+                    
+                    ScenesHandler.AlertStage(new Stage());
+                    
+                    AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+                }
+            
+            }
+        });
        
+        delete.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        
+        delete.setCursor(Cursor.HAND);
+        
+        vb.getChildren().add(delete);
+        
         hb.getChildren().add(vb);
+        
        
         return hb;
     }

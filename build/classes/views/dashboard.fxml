@@ -93,7 +93,7 @@
    <left>
       <VBox prefHeight="497.0" prefWidth="222.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Recent Orders" textFill="#c9c3c3">
+            <Label prefHeight="60.0" prefWidth="228.0" text="Recent Orders" textFill="#c9c3c3">
                <padding>
                   <Insets bottom="20.0" left="10.0" top="20.0" />
                </padding>
@@ -128,7 +128,7 @@
                   </TextField>
                   <Region />
                   <Region prefHeight="49.0" prefWidth="39.0" />
-                  <Button id="addBtn" fx:id="additemBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openAddItemDialog" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #212121; -fx-background-radius: 30px;" text="Add Item" textFill="WHITE">
+                  <Button id="addBtn" fx:id="additemBtn" alignment="CENTER" mnemonicParsing="false" onAction="#openAddItemDialog" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #212121; -fx-background-radius: 30px;" text="Add Item" textFill="WHITE">
                      <font>
                         <Font name="Candara Bold" size="18.0" />
                      </font>
