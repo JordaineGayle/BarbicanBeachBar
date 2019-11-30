@@ -342,6 +342,10 @@ public class CustomSceneBuilder {
         vb.getChildren().add(delete);
        
         hb.getChildren().add(vb);
+        
+        TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty());
+        
+        tm.createThreads();
        
         return hb;
     }
@@ -458,6 +462,10 @@ public class CustomSceneBuilder {
         vb.getChildren().add(delete);
         
         hb.getChildren().add(vb);
+        
+        TimeHelper tm = new TimeHelper(item.getPrepTime(),timeLabel.textProperty());
+        
+        tm.createThreads();
         
        
         return hb;

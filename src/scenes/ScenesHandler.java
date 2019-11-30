@@ -11,12 +11,18 @@ import com.helpers.CacheHelper;
 import com.helpers.CustomSceneBuilder;
 import com.helpers.PathHelper;
 import com.helpers.RuntimeHelper;
+import com.helpers.TimeHelper;
 import controllers.RegisterController;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,6 +54,8 @@ public class ScenesHandler {
     
     private static Stage customer_stage;
     
+    
+    
     public static void LoginStage(Stage s){
         try{
             
@@ -67,12 +75,23 @@ public class ScenesHandler {
             login_stage = s;
             
             s.show();
+            
+//            TimeHelper tm = new TimeHelper(3,new SimpleStringProperty());
+//            
+//            tm.createThreads();
+//            
+//            TimeHelper tm2 = new TimeHelper(5,new SimpleStringProperty());
+//            
+//            tm2.createThreads();
+            
+            
 
         }catch(IOException e){
             
             e.printStackTrace();
         }
     }
+   
     
     public static void DashboardStage(Stage s){
         try {
