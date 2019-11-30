@@ -6,6 +6,8 @@
 package scenes;
 
 import barbicanbeachbaroopproject2019.Main;
+import com.enums.Enums;
+import com.helpers.CacheHelper;
 import com.helpers.RuntimeHelper;
 import controllers.RegisterController;
 import java.io.IOException;
@@ -30,6 +32,8 @@ public class ScenesHandler {
     private static Stage register_stage;
     
     private static Stage item_stage;
+    
+    private static Stage edit_item_stage;
     
     private static Stage alert_stage;
     
@@ -134,6 +138,17 @@ public class ScenesHandler {
             
             register_stage = s;
             
+//            if(CacheHelper.getUserType() == Enums.UserType.Admin){
+//                s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                    public void handle(WindowEvent we) {
+//                        dashboard_stage.hide();
+//                        dashboard_stage.close();
+//
+//                        ScenesHandler.DashboardStage(new Stage());
+//                    }
+//                });
+//            }
+            
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -160,6 +175,43 @@ public class ScenesHandler {
             s.show();
             
             item_stage = s;
+            
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    dashboard_stage.hide();
+                    dashboard_stage.close();
+                    
+                    ScenesHandler.DashboardStage(new Stage());
+                }
+            });
+            
+            
+            
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void EditItemStage(Stage s){
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/views/additem.fxml"));
+            //fxmlLoader.setController(RegisterController.class);
+            Parent root = (Parent) fxmlLoader.load();
+            
+            s.initModality(Modality.APPLICATION_MODAL);
+            
+            s.setTitle("Edit Item");
+            
+            s.setScene(new Scene(root));
+            
+            s.setResizable(false);
+
+            s.sizeToScene();
+            
+            s.show();
+            
+            edit_item_stage = s;
             
             s.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
@@ -263,6 +315,10 @@ public class ScenesHandler {
     
     public static Stage getItemStage(){
         return item_stage;
+    }
+    
+    public static Stage getEditItemStage(){
+        return edit_item_stage;
     }
     
     public static Stage getAlertStage(){

@@ -9,6 +9,7 @@ import com.enums.Enums;
 import com.enums.Enums.UserType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.helpers.CacheHelper;
 import com.helpers.FileHelper;
 import com.helpers.GeneralHelper;
 import com.helpers.UserHelper;
@@ -187,7 +188,13 @@ public class RegisterController implements IInitWrapper, IDisplayUserError {
     }
     
     private boolean processUserCreation(){
-        user = new User(fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Customer);
+        
+        if(CacheHelper.getUserType() == UserType.Admin){
+            user = new User(fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Admin);
+        }else{
+            user = new User(fname.getText(),lname.getText(),email.getText().toLowerCase(),GeneralHelper.EncodeString(pword.getText()),phone.getText(),UserType.Customer);
+        }
+        
         try{
             UserHelper uhelper = new UserHelper();
             uhelper.AddUser(user);

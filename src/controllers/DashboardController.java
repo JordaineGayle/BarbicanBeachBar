@@ -162,17 +162,9 @@ public class DashboardController implements IInitWrapper, IDisplayUserError {
     }
     
     @FXML
-    private void edit(){
-        
-    }
-    
-    @FXML
-    private void delete(){
-        
-    }
-    
-    @FXML
     private void addUser(){
+        
+        ScenesHandler.RegisterStage(new Stage());
         
     }
     

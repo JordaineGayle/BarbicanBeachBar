@@ -98,5 +98,15 @@
     "PhoneNumber": "18765578447",
     "UserType": "Customer",
     "Timestamp": "Nov 29, 2019 8:24:36 AM"
+  },
+  {
+    "Id": 11,
+    "FirstName": "Amoy",
+    "LastName": "Green",
+    "EmailAddress": "agreen@gmail.com",
+    "Password": "MTIzNDU2Nzg\u003d",
+    "PhoneNumber": "18765578447",
+    "UserType": "Admin",
+    "Timestamp": "Nov 29, 2019 10:08:29 PM"
   }
 ]

@@ -6,6 +6,7 @@
 package com.helpers;
 
 import com.enums.Enums.UserType;
+import com.models.Item;
 
 /**
  *
@@ -19,12 +20,16 @@ public class CacheHelper {
     
     private static String Useremail;
     
+    private static Item EditItem;
+    
     public CacheHelper(){
         Username= "";
         
         UType = UserType.Guest;
         
         Useremail = "";
+        
+        EditItem = new Item();
     }
     
     public static String getUsername(){
@@ -39,8 +44,16 @@ public class CacheHelper {
         return UType;
     }
     
+    public static Item getItem(){
+        return EditItem;
+    }
+    
     public static void setUsername(String name){
         Username = name;
+    }
+    
+    public static void setItem(Item itm){
+        EditItem = itm;
     }
     
     public static void setUseremail(String email){

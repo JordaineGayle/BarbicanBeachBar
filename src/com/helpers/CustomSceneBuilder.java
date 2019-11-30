@@ -462,6 +462,13 @@ public class CustomSceneBuilder {
         edit.setPrefWidth(88);
         edit.setPrefHeight(25);
         
+        edit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScenesHandler.EditItemStage(new Stage());
+            }
+        });
+        
         
         //loadOrders
         
