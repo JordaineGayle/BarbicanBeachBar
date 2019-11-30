@@ -10,6 +10,7 @@ import com.models.Item;
 import com.models.Order;
 import controllers.AlertdialogController;
 import controllers.CustomerdashController;
+import controllers.DashboardController;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -376,7 +377,7 @@ public class CustomSceneBuilder {
         return hb;
     }
     
-    public static VBox BuildAdminItemVBox(Item item, Parent p){
+    public static VBox BuildAdminItemVBox(Item item){
         
         VBox vb = new VBox();
 
@@ -479,7 +480,10 @@ public class CustomSceneBuilder {
                 ItemsHelper ihp = new ItemsHelper();
                 
                 if(ihp.Delete(item.getItemId())){
-                    RuntimeHelper.loadAdminItems(p);
+                   
+                    ScenesHandler.getDashboardStage().close();
+                    
+                    ScenesHandler.DashboardStage(new Stage());
                 }
             }
         });

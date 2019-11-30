@@ -185,5 +185,13 @@ public class DashboardController implements IInitWrapper, IDisplayUserError {
         RuntimeHelper.loadIOrdersPartial(vp);
     }
     
+    public void leakRefresh(){
+        Parent p = tpane.getParent().getParent().getParent();
+        RuntimeHelper.loadItemsPartial(p);
+        
+        Parent vp = vpane.getParent().getParent().getParent();
+        RuntimeHelper.loadIOrdersPartial(vp);
+    }
+    
     
 }

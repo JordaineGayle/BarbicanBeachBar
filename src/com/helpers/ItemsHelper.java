@@ -271,9 +271,15 @@ public class ItemsHelper implements IDataManipulation<Item> {
         
         if(items != null){
             
-            Collections.sort(items);
+            if(items.size() <= 0){
+                return 0;
+            }else{
+                Collections.sort(items);
             
-            return items.get(items.size()-1).getItemId();
+                return items.get(items.size()-1).getItemId();
+            }
+            
+            
         }
         
         return 0;

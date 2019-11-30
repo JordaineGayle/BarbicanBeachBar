@@ -161,6 +161,17 @@ public class ScenesHandler {
             
             item_stage = s;
             
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    dashboard_stage.hide();
+                    dashboard_stage.close();
+                    
+                    ScenesHandler.DashboardStage(new Stage());
+                }
+            });
+            
+            
+            
         } catch(IOException e) {
             e.printStackTrace();
         }
