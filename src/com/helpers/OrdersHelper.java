@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.interfaces.IDataManipulation;
 import com.models.Cart;
-import com.models.Item;
 import com.models.Order;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -57,7 +56,7 @@ public class OrdersHelper implements IDataManipulation<Order> {
             fp.write(data);
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdersHelper.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         
@@ -83,7 +82,7 @@ public class OrdersHelper implements IDataManipulation<Order> {
             fp.write(data);
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdersHelper.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         
@@ -102,7 +101,7 @@ public class OrdersHelper implements IDataManipulation<Order> {
             fp.write(data);
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdersHelper.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         
@@ -131,7 +130,7 @@ public class OrdersHelper implements IDataManipulation<Order> {
             fp.write(data);
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(ItemsHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdersHelper.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         

@@ -11,8 +11,6 @@ import com.helpers.CacheHelper;
 import com.helpers.CustomSceneBuilder;
 import com.helpers.PathHelper;
 import com.helpers.RuntimeHelper;
-import com.helpers.TimeHelper;
-import controllers.RegisterController;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -76,14 +74,7 @@ public class ScenesHandler {
             
             s.show();
             
-//            TimeHelper tm = new TimeHelper(3,new SimpleStringProperty());
-//            
-//            tm.createThreads();
-//            
-//            TimeHelper tm2 = new TimeHelper(5,new SimpleStringProperty());
-//            
-//            tm2.createThreads();
-            
+
             
 
         }catch(IOException e){
@@ -157,7 +148,6 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/registerscreen.fxml"));
-            //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             setIcon(s);
@@ -196,7 +186,6 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/additem.fxml"));
-            //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             setIcon(s);
@@ -235,7 +224,6 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/edititem.fxml"));
-            //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             setIcon(s);
@@ -243,7 +231,7 @@ public class ScenesHandler {
             s.initModality(Modality.APPLICATION_MODAL);
             
             
-            s.setTitle("Edit Item");
+            s.setTitle("EditItem");
             
             s.setScene(new Scene(root));
             
@@ -275,14 +263,13 @@ public class ScenesHandler {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/alertdialog.fxml"));
-            //fxmlLoader.setController(RegisterController.class);
             Parent root = (Parent) fxmlLoader.load();
             
             setIcon(s);
             
             s.initModality(Modality.APPLICATION_MODAL);
             
-            s.setTitle("Warning !");
+            s.setTitle("Nessage Area");
             
             s.setScene(new Scene(root));
             

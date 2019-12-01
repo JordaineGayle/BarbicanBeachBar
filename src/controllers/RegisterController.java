@@ -10,7 +10,6 @@ import com.enums.Enums.UserType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.helpers.CacheHelper;
-import com.helpers.FileHelper;
 import com.helpers.GeneralHelper;
 import com.helpers.UserHelper;
 import com.interfaces.IDisplayUserError;

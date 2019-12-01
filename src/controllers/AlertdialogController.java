@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import com.interfaces.IInitWrapper;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,7 +19,7 @@ import javafx.scene.control.Label;
  *
  * @author jgayle
  */
-public class AlertdialogController implements Initializable {
+public class AlertdialogController implements IInitWrapper {
 
     @FXML
     private Label result = new Label();
@@ -32,6 +33,16 @@ public class AlertdialogController implements Initializable {
     
     public static void showError(String str){
         alertError.set(str);
+    }
+
+    @Override
+    public void initBindings() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void activateListeners() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

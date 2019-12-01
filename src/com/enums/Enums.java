@@ -11,14 +11,14 @@ package com.enums;
  */
 public class Enums {
     
-    //Enum for the user types
+    //Enum for the userTypes
     public enum UserType{
         Admin, 
         Customer,
         Guest
     }
     
-    //enum for the order status
+    //enum for the orderSstatus
     public enum Status{
         InProgress,
         Completed,

@@ -10,6 +10,7 @@ import com.helpers.EmailHelper;
 import com.helpers.ItemsHelper;
 import com.helpers.OrdersHelper;
 import com.helpers.UserHelper;
+import com.interfaces.IInitWrapper;
 import com.models.Cart;
 import com.models.Item;
 import com.models.Order;
@@ -33,7 +34,7 @@ import scenes.ScenesHandler;
  *
  * @author jgayle
  */
-public class CartViewController implements Initializable {
+public class CartViewController implements IInitWrapper {
 
     @FXML
     private Label total = new Label();
@@ -204,6 +205,16 @@ public class CartViewController implements Initializable {
         
         
         
+    }
+
+    @Override
+    public void initBindings() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void activateListeners() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

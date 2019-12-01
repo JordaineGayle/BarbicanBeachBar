@@ -12,7 +12,6 @@ import com.helpers.CacheHelper;
 import com.helpers.UserHelper;
 import com.interfaces.IDisplayUserError;
 import com.interfaces.IInitWrapper;
-import com.models.User;
 import scenes.ScenesHandler;
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -86,7 +85,7 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
         UserType utype = getUsertype();
         
         if(utype == null){
-            setError("Please select a valid user type.");
+            setError("Please select a valid userType.");
         }else{
             
             try{

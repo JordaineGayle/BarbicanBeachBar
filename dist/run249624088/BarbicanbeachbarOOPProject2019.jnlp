@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BarbicanbeachbarOOPProject2019.jar" size="1877004" download="eager" />
+    <jar href="BarbicanbeachbarOOPProject2019.jar" size="1876509" download="eager" />
     <jar href="lib\gson-2.8.5.jar" size="241622" download="eager" />
     <jar href="lib\javax.mail.jar" size="434923" download="eager" />
   </resources>

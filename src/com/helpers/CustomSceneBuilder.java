@@ -12,7 +12,6 @@ import com.models.Item;
 import com.models.Order;
 import controllers.AlertdialogController;
 import controllers.CustomerdashController;
-import controllers.DashboardController;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -146,7 +145,7 @@ public class CustomSceneBuilder {
                     
                     int inStock = item.getQuantity();
                     
-                    if(yourQuantity < inStock){
+                    if(yourQuantity <= inStock){
                         
                         obtainedCart.setQuantity(yourQuantity += obtainedCart.getQuantity());
                         
@@ -371,7 +370,7 @@ public class CustomSceneBuilder {
         
         vb.setPadding(new Insets(10,10,10,10));
        
-        Label nameLabel = new Label("User: "+item.getUser().getFirstName()+" "+item.getUser().getLastName());
+        Label nameLabel = new Label("Username: "+item.getUser().getFirstName()+" "+item.getUser().getLastName());
        
         nameLabel.setFont(Font.font("Arial Black"));
         

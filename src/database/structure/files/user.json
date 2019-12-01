@@ -118,5 +118,45 @@
     "PhoneNumber": "18765578447",
     "UserType": "Customer",
     "Timestamp": "Nov 30, 2019 6:31:09 AM"
+  },
+  {
+    "Id": 13,
+    "FirstName": "Jordaine",
+    "LastName": "Gayle",
+    "EmailAddress": "jordainegayle34@gmail.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "1-876-557-8447",
+    "UserType": "Customer",
+    "Timestamp": "Nov 30, 2019 1:00:23 PM"
+  },
+  {
+    "Id": 14,
+    "FirstName": "John",
+    "LastName": "Green",
+    "EmailAddress": "jgreen@hotmail.com",
+    "Password": "TG92ZTEyMzQ1Njc4OQ\u003d\u003d",
+    "PhoneNumber": "12345678955",
+    "UserType": "Admin",
+    "Timestamp": "Nov 30, 2019 1:15:55 PM"
+  },
+  {
+    "Id": 15,
+    "FirstName": "John",
+    "LastName": "Brown",
+    "EmailAddress": "jb12@gmail.com",
+    "Password": "MTIzNDU2Nzg\u003d",
+    "PhoneNumber": "12345678901",
+    "UserType": "Customer",
+    "Timestamp": "Nov 30, 2019 1:24:34 PM"
+  },
+  {
+    "Id": 16,
+    "FirstName": "Knight",
+    "LastName": "Williams",
+    "EmailAddress": "knightwil@gmail.com",
+    "Password": "MTIzNDU2Nzg\u003d",
+    "PhoneNumber": "12345678901",
+    "UserType": "Admin",
+    "Timestamp": "Nov 30, 2019 1:38:41 PM"
   }
 ]
