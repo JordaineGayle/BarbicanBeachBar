@@ -23,6 +23,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -46,6 +47,9 @@ public class RegisterController implements IInitWrapper, IDisplayUserError {
     
     @FXML
     private TextField phone = new TextField();
+    
+    @FXML
+    private Button registerBtn = new Button();
     
     @FXML
     private PasswordField pword = new PasswordField();
@@ -94,6 +98,9 @@ public class RegisterController implements IInitWrapper, IDisplayUserError {
         setDefault();
         
         activateListeners();
+        
+        GeneralHelper.buttonHover(registerBtn, "-fx-background-color:#43A047; -fx-background-radius: 30px;", "-fx-background-color: #1B5E20; -fx-background-radius: 30px;");
+
     }
     
     @Override

@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="379.0" style="-fx-background-color: #F5F5F5;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controllers.EdititemController">
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="379.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EdititemController">
    <children>
       <TextField fx:id="itemname" layoutX="42.0" layoutY="94.0" prefHeight="49.0" prefWidth="314.0" promptText="Item Name" style="-fx-background-color: transparent; -fx-border-color: #212121; -fx-border-radius: 30px;">
          <font>
@@ -39,7 +38,7 @@
             <Font name="Candara Bold" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="result" alignment="CENTER" layoutX="2.0" layoutY="531.0" prefHeight="33.0" prefWidth="394.0" textFill="RED">
+      <Label fx:id="result" alignment="CENTER" layoutX="2.0" layoutY="531.0" prefHeight="33.0" prefWidth="394.0" textFill="#d31313">
          <font>
             <Font name="Candara Italic" size="12.0" />
          </font>

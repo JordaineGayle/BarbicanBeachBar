@@ -6,7 +6,9 @@
 package controllers;
 
 import com.helpers.CacheHelper;
+import com.helpers.CustomSceneBuilder;
 import com.helpers.EmailHelper;
+import com.helpers.GeneralHelper;
 import com.helpers.ItemsHelper;
 import com.helpers.OrdersHelper;
 import com.helpers.UserHelper;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -48,6 +51,9 @@ public class CartViewController implements IInitWrapper {
     @FXML
     private Button orderitem = new Button();
     
+    @FXML
+    private Button emptyCartBtn = new Button();
+    
     /**
      * Initializes the controller class.
      */
@@ -67,10 +73,14 @@ public class CartViewController implements IInitWrapper {
         taxes.setText("Taxes & Fees: 0%");
         
         grandtotal.setText("Grand Total: USD $"+gTotal);
+        
+        GeneralHelper.buttonHover(orderitem, "-fx-background-color:#43A047; -fx-background-radius: 30px;", "-fx-background-color: #1B5E20; -fx-background-radius: 30px;");
+        GeneralHelper.buttonHover(emptyCartBtn, "-fx-background-color:#e53935; -fx-background-radius: 30px;", "-fx-background-color: #b71c1c; -fx-background-radius: 30px;");
+
     }
     
     @FXML
-    public void addOrder(){
+    private void addOrder(){
         
         ItemsHelper ih = new ItemsHelper();
         
@@ -98,7 +108,7 @@ public class CartViewController implements IInitWrapper {
                 
                 if(item.getItemId() == crtI.getItemId()){
                 
-                    System.out.println("From cartView Found: "+crtI.getItemName());
+                    //System.out.println("From cartView Found: "+crtI.getItemName());
                     
                     i = item;
                     break;
@@ -108,7 +118,7 @@ public class CartViewController implements IInitWrapper {
             
             if(i != null){
                 
-                System.out.println("From cartView Access not null: "+crtI.getItemName());
+                //System.out.println("From cartView Access not null: "+crtI.getItemName());
                 
                 i.setQuantity(i.getQuantity() - crtI.getQuantity());
                 
@@ -165,13 +175,7 @@ public class CartViewController implements IInitWrapper {
             
             if(oh.Add(order)){
                 
-                ih.cartItems.clear();
-                
-                if(String.valueOf(ItemsHelper.cartItems.size()).equals("0")){
-                    CustomerdashController.customerDashIntProp.set("");
-                }else{
-                    CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
-                }
+                handleCartEmpting();
                 
                 String subject = "Order Detials: Thank you for doing business with.";
                                
@@ -179,19 +183,31 @@ public class CartViewController implements IInitWrapper {
                 
                 List<String> nameList = order.getItems().stream().map(Item::getName).collect(Collectors.toList());
                 
-                String msg = "<div>"
-                + "<b>Order#:</b>"+order.getOrderNumber()+
-                "<br/><b>TotalPrice:</b> USD $"+order.getTotalPrice()+
-                "<br/><b>Total Prepartion Time:</b> "+order.getPrepTime()+" min"+
-                "<br/><b>Items: </b>"+String.join("<br/>",nameList)
-                + "</div>";
+                Task t = new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        String msg = "<div>"
+                        + "<b>Order#:</b>"+order.getOrderNumber()+
+                        "<br/><b>TotalPrice:</b> USD $"+order.getTotalPrice()+
+                        "<br/><b>Total Prepartion Time:</b> "+order.getPrepTime()+" min"+
+                        "<br/><b>Items: </b>"+String.join("<br/>",nameList)
+                        + "</div>";
 
-                new EmailHelper(to,subject,msg);
+                        new EmailHelper(to,subject,msg);
+
+                        ScenesHandler.AlertStage(new Stage());
+
+                        return true;
+
+                    }
+                };
+                
+                new Thread(t).start();
                 
                 ScenesHandler.AlertStage(new Stage());
+                AlertdialogController.showError("Your order has been processed. You will receive an email shortly.\n"+"Your Order#: "+onum);
                 
-                AlertdialogController.showError("Your order has been processed. You will receive an email shortly.\n"
-                        + "Your Order#: "+onum);
+                //System.out.println(t.getValue());
                 
             }else{
                 ScenesHandler.AlertStage(new Stage());
@@ -206,6 +222,17 @@ public class CartViewController implements IInitWrapper {
         
         
     }
+    
+    @FXML
+    private void emptyCart(){
+        if(CustomSceneBuilder.AlertDialog("Are you sure you want to\nEmpty the cart?", "Dispose Cart Items")){
+            handleCartEmpting();
+            ScenesHandler.AlertStage(new Stage());
+            AlertdialogController.showError("Items has been successfully deleted.");
+            ScenesHandler.getCartStage().close();
+        }
+    }
+    
 
     @Override
     public void initBindings() {
@@ -215,6 +242,27 @@ public class CartViewController implements IInitWrapper {
     @Override
     public void activateListeners() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void handleCartEmpting(){
+        
+        ArrayList<Cart> itms = ItemsHelper.cartItems;
+        
+        ArrayList<Cart> newCart = new ArrayList<Cart>();
+        
+        for(Cart c : itms){
+            
+            if(!c.getUserId().equals(CacheHelper.getUseremail())){
+                newCart.add(c);
+            }
+            
+        }
+        
+        ItemsHelper.cartItems = newCart;
+        
+        GeneralHelper.setCartCount();
+        
+        
     }
     
     

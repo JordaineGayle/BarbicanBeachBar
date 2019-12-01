@@ -39,7 +39,7 @@
                </padding>
             </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="orderitem" mnemonicParsing="false" onAction="#addOrder" prefHeight="37.0" prefWidth="277.0" style="-fx-background-color: #1B5E20; -fx-background-radius: 30px;" text="Purchase" textFill="WHITE">
+            <Button fx:id="emptyCartBtn" mnemonicParsing="false" onAction="#emptyCart" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #e53935; -fx-background-radius: 30px;" text="Empty" textFill="WHITE">
                <font>
                   <Font name="Candara" size="15.0" />
                </font>
@@ -47,7 +47,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Region prefHeight="100.0" prefWidth="80.0" />
+            <Region prefHeight="100.0" prefWidth="35.0" />
+            <Button fx:id="orderitem" layoutX="687.0" layoutY="42.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #1B5E20; -fx-background-radius: 30px;" text="Purchase" textFill="WHITE">
+               <font>
+                  <Font name="Candara" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Region layoutX="717.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0" />
          </children>
       </HBox>
    </bottom>

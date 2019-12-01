@@ -20,13 +20,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -45,6 +49,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scenes.ScenesHandler;
 
@@ -55,6 +60,9 @@ import scenes.ScenesHandler;
  * This class was built to load dynamic data onto the view
  */
 public class CustomSceneBuilder {
+    
+    
+    protected static boolean alertAnswer = false;
     
     public static VBox BuildCustomerItemVBox(Item item){
         
@@ -102,6 +110,10 @@ public class CustomSceneBuilder {
         
         Button btn = new Button("Add to cart");
         
+        btn.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+        btn.setTextFill(Paint.valueOf("WHITE"));
+        btn.setStyle("-fx-background-color: #212121; -fx-background-radius: 30px;");
+        
         btn.setTextAlignment(TextAlignment.CENTER);
         
         btn.setMinWidth(200);
@@ -112,13 +124,24 @@ public class CustomSceneBuilder {
                 
                 if(GeneralHelper.isNumeric(tf.getText())){
                     
+                    ItemsHelper items = new ItemsHelper();
+                    
                     int yourQuantity = Integer.parseInt(tf.getText());
+                    
+                    if(yourQuantity <= 0){
+                        
+                        ScenesHandler.AlertStage(new Stage());
+                        AlertdialogController.showError("Invalid quantity submitted. Connot be less than nor 0");
+                        return;
+                    }
+                    
+                    //if(yourQuantity)
                     
                     Cart obtainedCart = null;
                     
                     for(Cart e : ItemsHelper.cartItems){
                     
-                        if(e.getItemId() == item.getItemId()){
+                        if((e.getItemId() == item.getItemId()) && CacheHelper.getUseremail().equals(e.getUserId()) ){
                             obtainedCart = e;
                             break;
                         }
@@ -131,7 +154,9 @@ public class CustomSceneBuilder {
                         
                         ItemsHelper.cartItems.forEach(i->{
                         
-                            if(i.getItemId() != item.getItemId()){
+                            if( (i.getItemId() != item.getItemId()) && !CacheHelper.getUseremail().equals(i.getUserId())){
+                                cartitems.add(i);
+                            }else if((i.getItemId() == item.getItemId()) && !CacheHelper.getUseremail().equals(i.getUserId())){
                                 cartitems.add(i);
                             }
                             
@@ -140,7 +165,7 @@ public class CustomSceneBuilder {
                         ItemsHelper.cartItems = cartitems;
                         
                     }else{
-                        obtainedCart = new Cart(item.getItemId(),item.getName(),0,item.getPrice(),yourQuantity*item.getPrice());
+                        obtainedCart = new Cart(item.getItemId(),item.getName(),0,item.getPrice(),yourQuantity*item.getPrice(),CacheHelper.getUseremail());
                     }
                     
                     int inStock = item.getQuantity();
@@ -153,9 +178,15 @@ public class CustomSceneBuilder {
                         
                         ItemsHelper.cartItems.add(obtainedCart);
                         
-                        CustomerdashController.customerDashIntProp.set(String.valueOf(ItemsHelper.cartItems.size()));
+                        GeneralHelper.setCartCount();
+                        
+                        //CustomerdashController.customerDashIntProp.set(String.valueOf(GeneralHelper.getMyCartCount()));
                     }else{
-                        ItemsHelper.cartItems.add(obtainedCart);
+                       
+                        if(obtainedCart.getQuantity()>0){
+                             ItemsHelper.cartItems.add(obtainedCart);
+                        }
+                        
                         ScenesHandler.AlertStage(new Stage());
                         AlertdialogController.showError("out of stock.");
                     }
@@ -168,11 +199,11 @@ public class CustomSceneBuilder {
             }
         });
         
+        GeneralHelper.buttonHover(btn, "-fx-background-color:#424242", "-fx-background-color: #212121");
+        
         vb.getChildren().add(btn);
         return vb;
     }
-    
-    
     
     public static HBox BuildCartItemHBox(Cart item){
         
@@ -260,6 +291,14 @@ public class CustomSceneBuilder {
        
         vb.getChildren().add(statusLabel);
         
+        Label priceLabel = new Label("Price: "+item.getTotalPrice());
+        
+        priceLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        priceLabel.setPadding(new Insets(10,0,0,0));
+       
+        vb.getChildren().add(priceLabel);
+        
         Label orderLabel = new Label("Order#: "+item.getOrderNumber());
        
         orderLabel.setFont(Font.font("Arial"));
@@ -284,19 +323,27 @@ public class CustomSceneBuilder {
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
         
-        timeLabel.setPadding(new Insets(10,0,0,0));
+        timeLabel.setPadding(new Insets(0,0,0,20));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
         timeLabel.setFont(Font.font("Candara"));
        
-        timeLabel.setTextFill(Paint.valueOf("#dd0e0e"));
+        timeLabel.setTextFill(Paint.valueOf("#76FF03"));
         
         //timeLabel.setTooltip("time");
         
         innerBox.getChildren().add(timeLabel);
        
         vb.getChildren().add(innerBox);
+        
+        Label tsLabel = new Label("Date: "+item.getTimeStamp().toString());
+        
+        tsLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        tsLabel.setPadding(new Insets(10,0,0,0));
+       
+        vb.getChildren().add(tsLabel);
         
         String localUrl2 = "";
         File file1 = new File(PathHelper.imageAbsPath+"icons8_delete_32px.png");
@@ -307,7 +354,7 @@ public class CustomSceneBuilder {
             Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Image img2 = new Image(localUrl2,true);
+        Image img2 = new Image(localUrl2);
         
         ImageView imv2 = new ImageView(img2);
         
@@ -316,9 +363,10 @@ public class CustomSceneBuilder {
         
         Button delete = new Button();
         delete.setGraphic(imv2);
-        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
-        delete.setTextFill(Paint.valueOf("WHITE"));
+//        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+//        delete.setTextFill(Paint.valueOf("WHITE"));
         delete.setStyle("-fx-background-color: #b71c1c;");
+        GeneralHelper.buttonHover(delete, "-fx-background-color:#ef5350", "-fx-background-color: #b71c1c");
         //delete.setPrefWidth(88);
         //delete.setPrefHeight(25);
         
@@ -329,10 +377,13 @@ public class CustomSceneBuilder {
                 OrdersHelper oh = new OrdersHelper();
                 
                 if(oh.Delete(item.getOrderId())){
+                    if(AlertDialog("Are you sure you want\nto delete this item?","Delete Item")){
+                        ScenesHandler.AlertStage(new Stage());
                     
-                    ScenesHandler.AlertStage(new Stage());
-                    
-                    AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+                        AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+
+                        RuntimeHelper.loadOrders(ScenesHandler.getCustomerParent());
+                    }
                 }
             
             }
@@ -354,9 +405,6 @@ public class CustomSceneBuilder {
        
         return hb;
     }
-    
-    
-    
     
     
     
@@ -396,6 +444,14 @@ public class CustomSceneBuilder {
        
         List<String> nameList = item.getItems().stream().map(Item::getName).collect(Collectors.toList());
        
+        Label priceLabel = new Label("Price: "+item.getTotalPrice());
+        
+        priceLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        priceLabel.setPadding(new Insets(10,0,0,0));
+       
+        vb.getChildren().add(priceLabel);
+        
         Label itemLabel = new Label(String.join("\n",nameList));
         
         itemLabel.setTextFill(Paint.valueOf("WHITE"));
@@ -406,19 +462,27 @@ public class CustomSceneBuilder {
        
         Label timeLabel = new Label(String.valueOf(item.getPrepTime())+" min");
         
-        timeLabel.setPadding(new Insets(10,0,0,0));
+        timeLabel.setPadding(new Insets(0,0,0,20));
        
         timeLabel.setAlignment(Pos.CENTER_RIGHT);
         
         timeLabel.setFont(Font.font("Candara"));
        
-        timeLabel.setTextFill(Paint.valueOf("#dd0e0e"));
+        timeLabel.setTextFill(Paint.valueOf("#76FF03"));
         
         //timeLabel.setTooltip("time");
         
         innerBox.getChildren().add(timeLabel);
        
         vb.getChildren().add(innerBox);
+        
+        Label tsLabel = new Label("Date: "+item.getTimeStamp().toString());
+        
+        tsLabel.setTextFill(Paint.valueOf("WHITE"));
+        
+        tsLabel.setPadding(new Insets(10,0,0,0));
+       
+        vb.getChildren().add(tsLabel);
         
         String localUrl2 = "";
         File file1 = new File(PathHelper.imageAbsPath+"icons8_delete_32px.png");
@@ -429,7 +493,7 @@ public class CustomSceneBuilder {
             Logger.getLogger(CustomSceneBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Image img2 = new Image(localUrl2,true);
+        Image img2 = new Image(localUrl2);
         
         ImageView imv2 = new ImageView(img2);
         
@@ -438,11 +502,10 @@ public class CustomSceneBuilder {
         
         Button delete = new Button();
         delete.setGraphic(imv2);
-        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
-        delete.setTextFill(Paint.valueOf("WHITE"));
+//        delete.setFont(Font.font("Candara", FontPosture.ITALIC,12));
+//        delete.setTextFill(Paint.valueOf("WHITE"));
         delete.setStyle("-fx-background-color: #b71c1c;");
-        //delete.setPrefWidth(88);
-        //delete.setPrefHeight(25);
+        GeneralHelper.buttonHover(delete, "-fx-background-color:#ef5350", "-fx-background-color: #b71c1c");
         
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -451,10 +514,13 @@ public class CustomSceneBuilder {
                 OrdersHelper oh = new OrdersHelper();
                 
                 if(oh.Delete(item.getOrderId())){
+                    if(AlertDialog("Are you sure you want\nto delete this item?","Delete Item")){
+                        ScenesHandler.AlertStage(new Stage());
                     
-                    ScenesHandler.AlertStage(new Stage());
-                    
-                    AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+                        AlertdialogController.showError("Order#: "+item.getOrderNumber()+" has successfully deleted.");
+
+                        RuntimeHelper.loadOrders(ScenesHandler.getDashboardParent());
+                    }
                 }
             
             }
@@ -513,6 +579,8 @@ public class CustomSceneBuilder {
         vb.getChildren().add(new Label("Item: "+item.getName().toUpperCase()));
         
         vb.getChildren().add(new Label("Prepartion Time: "+String.valueOf(item.getPrepTime())+" min"));
+        
+        vb.getChildren().add(new Label("In Stock: "+String.valueOf(item.getQuantity())));
         
         vb.getChildren().add(new Label("Price: USD $"+String.valueOf(item.getPrice())));
         
@@ -573,6 +641,8 @@ public class CustomSceneBuilder {
             }
         });
         
+        GeneralHelper.buttonHover(edit, "-fx-background-color:#424242; -fx-background-radius: 30px;", "-fx-background-color: #212121; -fx-background-radius: 30px;");
+        
         
         //loadOrders
         
@@ -585,16 +655,17 @@ public class CustomSceneBuilder {
         delete.setPrefWidth(88);
         delete.setPrefHeight(25);
         
+        GeneralHelper.buttonHover(delete, "-fx-background-color:#424242; -fx-background-radius: 30px;", "-fx-background-color: #212121; -fx-background-radius: 30px;");
+        
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 ItemsHelper ihp = new ItemsHelper();
                 
-                if(ihp.Delete(item.getItemId())){
-                   
-                    ScenesHandler.getDashboardStage().close();
-                    
-                    ScenesHandler.DashboardStage(new Stage());
+                if(AlertDialog("Are you sure you want\nto delete this item?","Delete Item")){
+                    if(ihp.Delete(item.getItemId())){
+                        RuntimeHelper.loadAdminItems(ScenesHandler.getDashboardParent());
+                    }
                 }
             }
         });
@@ -608,4 +679,126 @@ public class CustomSceneBuilder {
         
         return vb;
     }
+    
+    
+    public static boolean AlertDialog(String message, String title){
+        
+        if(title == null || title.isEmpty()){
+            title = "Confirm";
+        }
+        
+        Stage s = new Stage();
+        
+        VBox vb = new VBox();
+        
+        Region vr = new Region();
+        
+        VBox.setVgrow(vr, Priority.ALWAYS);
+        
+        Scene scene = new Scene(vb);
+        
+        s.initModality(Modality.APPLICATION_MODAL);
+        
+        s.setResizable(false);
+        
+        s.setMinHeight(180);
+        
+        s.setMinHeight(100);
+        
+        s.setTitle(title);
+        
+        vb.setPrefSize(180, 100);
+        
+        vb.setPadding(new Insets(10,10,10,10));
+        
+        vb.setStyle("-fx-background-color: #212121;");
+        
+        Label msg = new Label(message);
+        
+        msg.setFont(Font.font("Candara", FontPosture.ITALIC, 12));
+        
+        msg.setTextFill(Paint.valueOf("WHITE"));
+        
+        msg.setPrefWidth(180);
+        
+        msg.setAlignment(Pos.CENTER);
+        
+        vb.getChildren().add(msg);
+        vb.getChildren().add(vr);
+        
+        HBox hb = new HBox();
+        
+        Region r = new Region();
+        HBox.setHgrow(r,Priority.ALWAYS);
+        
+        Region r1 = new Region();
+        HBox.setHgrow(r1,Priority.ALWAYS);
+        
+        Region r2 = new Region();
+        HBox.setHgrow(r2,Priority.ALWAYS);
+        
+        hb.setStyle("-fx-background-color:transparent;");
+        
+        Button yes = new Button("Yes");
+        
+        Button no = new Button("No");
+        
+        yes.setFont(Font.font("Candara", FontPosture.ITALIC, 10));
+        
+        yes.setTextFill(Paint.valueOf("WHITE"));
+        
+        no.setFont(Font.font("Candara", FontPosture.ITALIC, 10));
+        
+        no.setTextFill(Paint.valueOf("WHITE"));
+        
+        yes.setStyle("-fx-background-color:#e53935; -fx-bachround-radius: 30px");
+        
+        no.setStyle("-fx-background-color:#43A047; -fx-bachround-radius: 30px");
+        
+        no.setCursor(Cursor.HAND);
+        
+        yes.setCursor(Cursor.HAND);
+        
+        yes.setPrefSize(60, 20);
+        
+        no.setPrefSize(60, 20);
+        
+        no.onMouseEnteredProperty();
+        
+        GeneralHelper.buttonHover(yes,"-fx-background-color:#e57373","-fx-background-color:#e53935");
+        GeneralHelper.buttonHover(no,"-fx-background-color:#81C784","-fx-background-color:#43A047");
+        
+        no.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                alertAnswer = false;
+                s.close();
+            }
+        });
+        
+        
+        yes.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                alertAnswer = true;
+                s.close();
+            }
+        });
+        
+        hb.getChildren().add(r1);
+        hb.getChildren().add(no);
+        hb.getChildren().add(r);
+        hb.getChildren().add(yes);
+        hb.getChildren().add(r2);
+        vb.getChildren().add(hb);
+        
+        s.setScene(scene);
+        
+        s.showAndWait();
+        
+        
+        
+        return alertAnswer;
+    }
+    
 }

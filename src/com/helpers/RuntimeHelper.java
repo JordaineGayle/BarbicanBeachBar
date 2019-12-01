@@ -45,6 +45,8 @@ public class RuntimeHelper {
         
         Collections.sort(items);
    
+        loadOrders(p);
+        
         if(items != null){
     
             ObservableList<Node> node = p.getChildrenUnmodifiable();
@@ -57,10 +59,22 @@ public class RuntimeHelper {
 
             TilePane tp = (TilePane) sp.getContent();
             
-            for(Item item : items){
+            tp.getChildren().clear();
+            
+            if(CacheHelper.getUserType() == UserType.Admin){
+                
+                
+                for(Item item : items){
 
-                tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+                    tp.getChildren().add(CustomSceneBuilder.BuildAdminItemVBox(item));
 
+                }
+            }else{
+                for(Item item : items){
+
+                    tp.getChildren().add(CustomSceneBuilder.BuildCustomerItemVBox(item));
+
+                }
             }
         }
     }
@@ -72,6 +86,8 @@ public class RuntimeHelper {
         ArrayList<Item> items = ih.GetAll();
         
         Collections.sort(items);
+        
+        loadOrders(p);
    
         if(items != null){
     
@@ -84,6 +100,8 @@ public class RuntimeHelper {
             ScrollPane sp = (ScrollPane) node.get(1);
 
             TilePane tp = (TilePane) sp.getContent();
+            
+            tp.getChildren().clear();
             
             for(Item item : items){
 
@@ -186,21 +204,21 @@ public class RuntimeHelper {
 
             for(Cart item : items){
 
-                //item.setTotalPrice(0);
+                if(item.getUserId().equals(CacheHelper.getUseremail())){
+                    //item.setTotalPrice(0);
                 
-                HBox hb = CustomSceneBuilder.BuildCartItemHBox(item);
-                
-                if(counter%2 == 0){
-                    hb.setStyle("-fx-background-color: rgba(100,100,100,0.5);");
-                    vb.getChildren().add(hb);
-                }else{
-                    hb.setStyle("-fx-background-color: rgba(150,150,150,1);");
-                    vb.getChildren().add(hb);
+                    HBox hb = CustomSceneBuilder.BuildCartItemHBox(item);
+
+                    if(counter%2 == 0){
+                        hb.setStyle("-fx-background-color: rgba(100,100,100,0.5);");
+                        vb.getChildren().add(hb);
+                    }else{
+                        hb.setStyle("-fx-background-color: rgba(150,150,150,1);");
+                        vb.getChildren().add(hb);
+                    }
+                    
+                    counter++;
                 }
-                
-                
-                
-                counter++;
 
             }
         }
@@ -269,6 +287,8 @@ public class RuntimeHelper {
         Collections.sort(items);
    
         if(items != null){
+            
+            vb1.getChildren().clear();
     
             if(CacheHelper.getUserType() == UserType.Customer){
                 

@@ -8,6 +8,7 @@ package com.helpers;
 import com.enums.Enums;
 import com.models.Item;
 import com.models.Order;
+import controllers.AlertdialogController;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,7 +16,10 @@ import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.concurrent.Task;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import scenes.ScenesHandler;
 
 /**
  *
@@ -51,60 +55,79 @@ public class TimeHelper {
         
         Timer timer = new java.util.Timer();
 
-            timer.schedule(new TimerTask() {
-                public void run() {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                           if(orderTime <= 0){
-                               //System.out.println("Order Complete");
-                               Order order = oh.GetSingle(orderId);
-                               order.setOrderStatus(Enums.Status.Completed);
-                               
-                               String subject = "Your order is completed and ready for pickup";
-                               
-                               String to = order.getUser().getEmailAddress();
-                               
-                               List<String> nameList = order.getItems().stream().map(Item::getName).collect(Collectors.toList());
-                               
-                               String msg = "<div>"
-                                       + "<b>Order#:</b>"+order.getOrderNumber()+
-                                       "<br/><b>TotalPrice:</b> USD $"+order.getTotalPrice()+
-                                       "<br/><b>Items: </b>"+String.join("<br/>",nameList)
-                                       + "</div>";
-                               
-                               new EmailHelper("freshcode9@gmail.com",subject,msg);
-                               
-                               oh.Edit(order);
-                               timer.cancel();
-                               timer.purge();
-                           }
-                           minusHandler();
-                        }
-                    });
-                }
-                
-            }, 0,period);
-            
-            
-            
-             Timer timer2 = new java.util.Timer();
-
-                timer2.schedule(new TimerTask() {
+        timer.schedule(new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
                     public void run() {
-                        Platform.runLater(new Runnable() {
-                            public void run() {
-                               if(orderTime <= 0){
-                                   timer2.cancel();
-                                   timer2.purge();
+                       if(orderTime <= 0){
+                           //System.out.println("Order Complete");
+                           Order order = oh.GetSingle(orderId);
+                           order.setOrderStatus(Enums.Status.Completed);
+                           oh.Edit(order);
+                           
+                           if(CacheHelper.getUseremail().equals(order.getUser().getEmailAddress()) ){
+                               ScenesHandler.AlertStage(new Stage());
+                               AlertdialogController.showError("Your order has successfully been completed.\nAn email will be sent shortly.\nOrder#: "+order.getOrderNumber());
+                           }
+
+                           
+
+                           Task t = new Task() {
+                               @Override
+                               protected Object call() throws Exception {
+
+                                   String subject = "Your order is completed and ready for pickup";
+
+                                    String to = order.getUser().getEmailAddress();
+
+                                    List<String> nameList = order.getItems().stream().map(Item::getName).collect(Collectors.toList());
+
+                                    String msg = "<div>"
+                                            + "<b>Order#:</b>"+order.getOrderNumber()+
+                                            "<br/><b>TotalPrice:</b> USD $"+order.getTotalPrice()+
+                                            "<br/><b>Items: </b>"+String.join("<br/>",nameList)
+                                            + "</div>";
+
+                                    new EmailHelper(order.getUser().getEmailAddress(),subject,msg);
+
+                                    timer.cancel();
+                                    
+                                    //timer.purge();
+                                    
+                                    return true;
                                }
-                               secHandler();
-                            }
-                        });
+                           };
 
-                        
+                           new Thread(t).start();
+
+                           
+                       }else{
+                           minusHandler();
+                       }
+                       
+                       
                     }
+                });
+            }
+        }, 0,period);
+            
+        Timer timer2 = new java.util.Timer();
 
-                }, 0,secPeriod);
+        timer2.schedule(new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                       if(orderTime <= 0){
+                           timer2.cancel();
+                           //timer2.purge();
+                       }
+                       
+                       secHandler();
+                       
+                    }
+                });
+            }
+        }, 0,secPeriod);
     }
     
     private void minusHandler(){

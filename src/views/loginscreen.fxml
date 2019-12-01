@@ -39,7 +39,7 @@
                   <Font name="Candara Italic" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="33.0" layoutY="369.0" mnemonicParsing="false" onAction="#registerScreen" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #1B5E20; -fx-background-radius: 20;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="regbtn" layoutX="33.0" layoutY="369.0" mnemonicParsing="false" onAction="#registerScreen" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #1B5E20; -fx-background-radius: 20;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Candara" size="17.0" />
                </font>

@@ -6,6 +6,7 @@
 package controllers;
 
 import com.helpers.CacheHelper;
+import com.helpers.GeneralHelper;
 import com.helpers.ItemsHelper;
 import com.helpers.RuntimeHelper;
 import com.interfaces.IDisplayUserError;
@@ -31,6 +32,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -59,13 +61,13 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     private Button cardadd = new Button();
     
     @FXML 
-    private ImageView logout = new ImageView();
+    private Pane logout = new Pane();
     
     @FXML
     private TextField searcharea = new TextField();
     
     @FXML
-    private ImageView viewcartitems = new ImageView();
+    private Pane viewcartitems = new Pane();
     
     @FXML
     private VBox vpane = new VBox();
@@ -88,6 +90,9 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
     public void initialize(URL url, ResourceBundle rb) {
         initBindings();
         activateListeners();
+        GeneralHelper.buttonHover(refreshBtn, "-fx-background-color:#424242; -fx-background-radius: 30px;", "-fx-background-color: #212121; -fx-background-radius: 30px;");
+        GeneralHelper.buttonHover(viewcartitems, "-fx-background-color: #424242","-fx-background-color:transparent");
+        GeneralHelper.buttonHover(logout, "-fx-background-color: #424242","-fx-background-color:transparent");
     }    
 
     @Override
@@ -148,9 +153,26 @@ public class CustomerdashController implements IInitWrapper, IDisplayUserError {
             AlertdialogController.showError("Cart is empty.");
         }else{
             
-            ScenesHandler.CartStage(new Stage());
+            int count = 0;
             
-            ItemsHelper.cartItems.forEach(e -> System.out.println(e.getQuantity())); 
+            for(Cart c : ItemsHelper.cartItems){
+                
+                if(CacheHelper.getUseremail().equals(c.getUserId())){
+                    count++;
+                }
+                
+            }
+            
+            if(count > 0){
+                ScenesHandler.CartStage(new Stage());
+            
+                //ItemsHelper.cartItems.forEach(e -> System.out.println(e.getQuantity())); 
+            }else{
+                ScenesHandler.AlertStage(new Stage());
+                AlertdialogController.showError("Cart is empty.");
+            }
+            
+            
         }
         
     }

@@ -11,32 +11,6 @@ package com.models;
  */
 public class Cart {
     
-    public Cart(){
-        
-        itemId =  0;
-        
-        itemName = "";
-        
-        quantity =  0;
-        
-        price =  0;
-        
-        totalPrice = 0;
-    }
-    
-    public Cart(int itmId, String iName, int quan, double pr,double tpr){
-        
-        itemId = itmId;
-        
-        itemName = iName;
-        
-        quantity = quan;
-        
-        price = pr;
-        
-        totalPrice = tpr;
-    }
-    
     //private int cartId;
     
     private int itemId;
@@ -49,12 +23,46 @@ public class Cart {
     
     private double totalPrice;
     
-//    public void setCartId(int cid){
-//        cartId = cid;
-//    }
+    private String userId;
+    
+    public Cart(){
+        
+        itemId =  0;
+        
+        itemName = "";
+        
+        quantity =  0;
+        
+        price =  0;
+        
+        totalPrice = 0;
+        
+        userId = "";
+    }
+    
+    public Cart(int itmId, String iName, int quan, double pr,double tpr, String usr){
+        
+        itemId = itmId;
+        
+        itemName = iName;
+        
+        quantity = quan;
+        
+        price = pr;
+        
+        totalPrice = tpr;
+        
+        userId = usr;
+    }
+    
+    
     
     public void setItemId(int id){
         itemId = id;
+    }
+    
+    public void setUserId(String id){
+        userId = id;
     }
     
     public void setItemName(String iName){
@@ -83,6 +91,10 @@ public class Cart {
     
     public String getItemName(){
         return itemName;
+    }
+    
+    public String getUserId(){
+        return userId;
     }
     
     public int getQuantity(){

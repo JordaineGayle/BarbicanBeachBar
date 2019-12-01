@@ -9,6 +9,7 @@ import com.enums.Enums;
 import com.enums.Enums.UserType;
 import com.google.gson.reflect.TypeToken;
 import com.helpers.CacheHelper;
+import com.helpers.GeneralHelper;
 import com.helpers.UserHelper;
 import com.interfaces.IDisplayUserError;
 import com.interfaces.IInitWrapper;
@@ -22,6 +23,7 @@ import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -45,7 +47,13 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
     private Label result = new Label();
     
     @FXML
+    private Button loginBtn = new Button();
+    
+    @FXML
     private RadioButton admin = new RadioButton();
+    
+    @FXML
+    private Button regbtn = new Button();
     
     @FXML
     private RadioButton customer = new RadioButton();
@@ -58,6 +66,10 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
         initBindings();
         
         setDefault();
+        
+        GeneralHelper.buttonHover(regbtn, "-fx-background-color:#43A047; -fx-background-radius: 30px;", "-fx-background-color: #1B5E20; -fx-background-radius: 30px;");
+        GeneralHelper.buttonHover(loginBtn, "-fx-background-color:#EEEEEE; -fx-background-radius: 30px;", "-fx-background-color:#fff; -fx-background-radius: 30px;");
+
     }
     
     @Override

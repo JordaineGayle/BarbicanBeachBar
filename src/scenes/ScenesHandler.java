@@ -52,6 +52,10 @@ public class ScenesHandler {
     
     private static Stage customer_stage;
     
+    private static Parent cusParent;
+    
+    private static Parent dashParent;
+    
     
     
     public static void LoginStage(Stage s){
@@ -89,6 +93,7 @@ public class ScenesHandler {
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/dashboard.fxml"));
             Parent root = (Parent) fxmlLoader.load();
+            dashParent = root;
             
             
             setIcon(s);
@@ -102,9 +107,15 @@ public class ScenesHandler {
             
             dashboard_stage = s;
             
-            RuntimeHelper.loadAdminItems(root);
+            RuntimeHelper.loadItems(root);
             
-            RuntimeHelper.loadOrders(root);
+            //RuntimeHelper.loadOrders(root);
+            
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    System.exit(0);
+                }
+            });
             
             login_stage.close();
             
@@ -120,6 +131,8 @@ public class ScenesHandler {
             fxmlLoader = new FXMLLoader(Main.class.getResource("/views/customerdash.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             
+            cusParent = root;
+            
             s.setScene(new Scene(root));  
             s.setTitle("Customer Dashboard");
             setIcon(s);
@@ -133,8 +146,14 @@ public class ScenesHandler {
             
             RuntimeHelper.loadItems(root);
             
-            RuntimeHelper.loadOrders(root);
+            //RuntimeHelper.loadOrders(root);
             //System.out.println(customer_stage);
+            
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    System.exit(0);
+                }
+            });
             
             login_stage.close();
             
@@ -206,10 +225,7 @@ public class ScenesHandler {
             
             s.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    dashboard_stage.hide();
-                    dashboard_stage.close();
-                    
-                    ScenesHandler.DashboardStage(new Stage());
+                       RuntimeHelper.loadAdminItems(ScenesHandler.getDashboardParent());
                 }
             });
             
@@ -245,10 +261,8 @@ public class ScenesHandler {
             
             s.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    dashboard_stage.hide();
-                    dashboard_stage.close();
-                    
-                    ScenesHandler.DashboardStage(new Stage());
+
+                       RuntimeHelper.loadAdminItems(ScenesHandler.getDashboardParent());
                 }
             });
             
@@ -269,7 +283,7 @@ public class ScenesHandler {
             
             s.initModality(Modality.APPLICATION_MODAL);
             
-            s.setTitle("Nessage Area");
+            s.setTitle("General Message");
             
             s.setScene(new Scene(root));
             
@@ -278,6 +292,12 @@ public class ScenesHandler {
             s.sizeToScene();
             
             s.show();
+            
+            s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    RuntimeHelper.loadItems(customer_stage.getScene().getRoot());
+                }
+            });
             
             alert_stage = s;
             
@@ -318,16 +338,26 @@ public class ScenesHandler {
             
             s.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    customer_stage.hide();
-                    customer_stage.close();
+//                    customer_stage.hide();
+//                    customer_stage.close();
+//                    
+//                    CustomerStage(new Stage());
                     
-                    CustomerStage(new Stage());
+                    RuntimeHelper.loadItems(customer_stage.getScene().getRoot());
                 }
             });
             
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static Parent getCustomerParent(){
+        return cusParent;
+    }
+    
+    public static Parent getDashboardParent(){
+        return dashParent;
     }
     
     public static Stage getLoginStage(){

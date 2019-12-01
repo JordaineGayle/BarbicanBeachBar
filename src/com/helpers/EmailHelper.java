@@ -73,7 +73,7 @@ public class EmailHelper {
 
             Transport.send(message);
         } catch (MessagingException mex) {
-            mex.printStackTrace();
+            //mex.printStackTrace();
         }
 
     }
