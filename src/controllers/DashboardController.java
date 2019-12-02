@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -88,6 +89,11 @@ public class DashboardController implements IInitWrapper, IDisplayUserError {
         GeneralHelper.buttonHover(addUserBtn, "-fx-background-color: #424242","-fx-background-color:transparent");
         GeneralHelper.buttonHover(refreshBtn, "-fx-background-color: #424242","-fx-background-color:transparent");
         
+        
+        Tooltip tip1 = new Tooltip("Add New Item");
+        
+       additemBtn.setTooltip(tip1);
+       
     }    
 
     @Override
