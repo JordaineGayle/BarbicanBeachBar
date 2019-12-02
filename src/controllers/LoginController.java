@@ -67,6 +67,8 @@ public class LoginController implements IInitWrapper,IDisplayUserError {
         
         setDefault();
         
+        
+        
         GeneralHelper.buttonHover(regbtn, "-fx-background-color:#43A047; -fx-background-radius: 30px;", "-fx-background-color: #1B5E20; -fx-background-radius: 30px;");
         GeneralHelper.buttonHover(loginBtn, "-fx-background-color:#EEEEEE; -fx-background-radius: 30px;", "-fx-background-color:#fff; -fx-background-radius: 30px;");
 

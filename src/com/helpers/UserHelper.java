@@ -127,9 +127,7 @@ public class UserHelper {
              
              CacheHelper.setUseremail(user.getEmailAddress());
 
-             GeneralHelper.setCartCount();
-             
-             //System.out.println(CacheHelper.getUseremail());
+             System.out.println(CacheHelper.getUseremail());
              
              return true;
          }

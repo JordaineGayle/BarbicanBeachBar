@@ -295,7 +295,12 @@ public class ScenesHandler {
             
             s.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    RuntimeHelper.loadItems(customer_stage.getScene().getRoot());
+                    if(customer_stage!=null){
+                        RuntimeHelper.loadItems(customer_stage.getScene().getRoot());
+                    }else if(dashboard_stage != null){
+                        RuntimeHelper.loadItems(dashboard_stage.getScene().getRoot());
+                    }
+                    
                 }
             });
             

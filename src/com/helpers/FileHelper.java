@@ -18,6 +18,8 @@ import java.nio.file.Paths;
  */
 public class FileHelper {
     
+    private String absolutePathOriginal = PathHelper.fileAbsPath;
+    
     private String absolutePath = PathHelper.fileAbsPath;
     
     private String fname;
@@ -33,6 +35,12 @@ public class FileHelper {
     
     public boolean create() throws IOException{
         try{
+            
+            File dir = new File(absolutePathOriginal);
+            
+            if (!dir.exists()){
+                dir.mkdirs();
+            }
             
             File file = new File(absolutePath+fname);
             
@@ -111,6 +119,6 @@ public class FileHelper {
     }
     
     public String getFileName(){
-        return fname;
+        return absolutePath;
     }
 }

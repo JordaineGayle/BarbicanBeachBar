@@ -146,15 +146,39 @@ public class EdititemController implements IInitWrapper, IDisplayUserError {
     private boolean validateInputs(){
         
         if(!GeneralHelper.isNumeric(preptime.getText())){
+            
+            
+            
             return false;
+        }else{
+            int i = Integer.parseInt(preptime.getText());
+            
+            if(i < 0){
+                return false;
+            }
         }
         
         if(!GeneralHelper.isNumeric(price.getText())){
+            
             return false;
+        }else{
+            double i = Double.parseDouble(price.getText());
+            
+            if(i < 0){
+                return false;
+            }
         }
         
         if(!GeneralHelper.isNumeric(quantity.getText())){
+            
             return false;
+        }else{
+            int i = Integer.parseInt(quantity.getText());
+            
+            
+            if(i < 0){
+                return false;
+            }
         }
         
         if(!checkItemValidity(itemname.getText())){

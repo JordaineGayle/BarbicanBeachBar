@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  */
 public class PathHelper {
     
-    public static final String fileAbsPath = Paths.get("").toAbsolutePath().toString()+"/src/database/structure/files/";
+    public static final String fileAbsPath = Paths.get("").toAbsolutePath().toString()+"/database/files/";
     
     public static final String imageAbsPath = Paths.get("").toAbsolutePath().toString()+"/src/images/";
     
